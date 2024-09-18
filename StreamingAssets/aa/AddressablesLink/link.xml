@@ -1,0 +1,62 @@
+<linker>
+  <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="HarvestingPatchController" preserve="all" />
+    <type fullname="HarvestingPatchView" preserve="all" />
+    <type fullname="LocationExtensionController" preserve="all" />
+    <type fullname="LocationExtensionView" preserve="all" />
+    <type fullname="LocationManager" preserve="all" />
+    <type fullname="ManufacturerStorageTracker" preserve="all" />
+    <type fullname="ManufactureStorage" preserve="all" />
+    <type fullname="PurchasePointController" preserve="all" />
+    <type fullname="PurchasePointView" preserve="all" />
+    <type fullname="StallCashController" preserve="all" />
+    <type fullname="StallCashView" preserve="all" />
+    <type fullname="StallHarvestController" preserve="all" />
+    <type fullname="StallHarvestView" preserve="all" />
+    <type fullname="StallManufacturerController" preserve="all" />
+    <type fullname="StallManufacturerView" preserve="all" />
+    <type fullname="StallQueue" preserve="all" />
+    <type fullname="StallStockController" preserve="all" />
+    <type fullname="StallStockView" preserve="all" />
+    <type fullname="StallUpgradeDeskController" preserve="all" />
+    <type fullname="StallUpgradeDeskView" preserve="all" />
+    <type fullname="Storage" preserve="all" />
+    <type fullname="TrashCanController" preserve="all" />
+    <type fullname="TrashCanView" preserve="all" />
+    <type fullname="ResourceType" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="AstarPathfindingProject, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="AstarPath" preserve="all" />
+    <type fullname="Pathfinding.AstarColor" preserve="nothing" serialized="true" />
+    <type fullname="Pathfinding.AstarData" preserve="nothing" serialized="true" />
+    <type fullname="Pathfinding.EuclideanEmbedding" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.LegacyResourcesProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.Object" preserve="all" />
+    <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.Sprite" preserve="all" />
+    <type fullname="UnityEngine.SpriteRenderer" preserve="all" />
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.Transform" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.BoxCollider2D" preserve="all" />
+    <type fullname="UnityEngine.EdgeCollider2D" preserve="all" />
+    <type fullname="UnityEngine.Rigidbody2D" preserve="all" />
+  </assembly>
+  <assembly fullname="Sirenix.Serialization">
+    <type fullname="Sirenix.Serialization.SerializationData" preserve="nothing" serialized="true" />
+  </assembly>
+</linker>
