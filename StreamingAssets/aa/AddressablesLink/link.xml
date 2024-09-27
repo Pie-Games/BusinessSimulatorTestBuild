@@ -23,6 +23,8 @@
     <type fullname="Storage" preserve="all" />
     <type fullname="TrashCanController" preserve="all" />
     <type fullname="TrashCanView" preserve="all" />
+    <type fullname="TruckController" preserve="all" />
+    <type fullname="TruckView" preserve="all" />
     <type fullname="ResourceType" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="AstarPathfindingProject, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
