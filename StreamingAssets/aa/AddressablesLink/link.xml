@@ -9,7 +9,6 @@
     <type fullname="ManufactureStorage" preserve="all" />
     <type fullname="PurchasePointController" preserve="all" />
     <type fullname="PurchasePointView" preserve="all" />
-    <type fullname="Resource" preserve="all" />
     <type fullname="StallCashController" preserve="all" />
     <type fullname="StallCashView" preserve="all" />
     <type fullname="StallHarvestController" preserve="all" />
@@ -73,7 +72,6 @@
   </assembly>
   <assembly fullname="UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.BoxCollider2D" preserve="all" />
-    <type fullname="UnityEngine.CircleCollider2D" preserve="all" />
     <type fullname="UnityEngine.EdgeCollider2D" preserve="all" />
     <type fullname="UnityEngine.Rigidbody2D" preserve="all" />
   </assembly>
