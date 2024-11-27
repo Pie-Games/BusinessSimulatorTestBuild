@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
-    <!-- <script src="https://sad.adsgram.ai/js/sad.min.js"></script> -->
+    <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
 
     <style>
         body, html {
@@ -191,11 +191,11 @@ loadingBar.style.display = "block";
 
 var myGameInstance = null;
 
-// const AdController = window.Adsgram.init({
-//     blockId: "5658",
-//     debug: true,
-//     debugBannerType: "RewardedVideo"
-// });
+const AdController = window.Adsgram.init({
+    blockId: "5658",
+    debug: true,
+    debugBannerType: "RewardedVideo"
+});
 
 var script = document.createElement("script");
 script.src = loaderUrl;
