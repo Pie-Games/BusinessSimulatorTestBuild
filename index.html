@@ -97,6 +97,26 @@
 }
     </style>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        window.Telegram.WebApp.expand();
+        function expandMiniApp() {
+            console.log("Expanding Mini App...");
+            if (window.TelegramWebviewProxy) {
+                window.TelegramWebviewProxy.postEvent('web_app_expand', JSON.stringify({}));
+                window.Telegram.WebApp.expand();
+            } else if (window.parent) {
+                const data = JSON.stringify({
+                    eventType: 'web_app_expand',
+                    eventData: {}
+                });
+                window.parent.postEvent('web_app_expand');
+            }
+        }
+        window.addEventListener('load', function() {
+            setTimeout(expandMiniApp, 10); 
+        });
+    </script>
+
 <!-- Authorization request -->
 <script>
     // Define the app object if needed
@@ -144,25 +164,6 @@
     });
     </script>
 
-    <script>
-        window.Telegram.WebApp.expand();
-        function expandMiniApp() {
-            console.log("Expanding Mini App...");
-            if (window.TelegramWebviewProxy) {
-                window.TelegramWebviewProxy.postEvent('web_app_expand', JSON.stringify({}));
-                window.Telegram.WebApp.expand();
-            } else if (window.parent) {
-                const data = JSON.stringify({
-                    eventType: 'web_app_expand',
-                    eventData: {}
-                });
-                window.parent.postEvent('web_app_expand');
-            }
-        }
-        window.addEventListener('load', function() {
-            setTimeout(expandMiniApp, 10); 
-        });
-    </script>
 </head>
 <body>
 <div id="unity-container" class="unity-desktop">
