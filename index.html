@@ -102,6 +102,7 @@
             display: none !important;
         }
     </style>
+    
     <!-- Telegram init -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
@@ -121,55 +122,55 @@
             }
         }
 
-        function lateLogin() {
-            var app = app || {};
+        // function lateLogin() {
+        //     var app = app || {};
 
-            // Define the function to post an authentication request
-            app.postAuthRequest = function (authData, callback) {
-                const initData = window.Telegram.WebApp.initData;
-                const initDataObj = {
-                    init_data: initData
-                };
-                const initDataJson = JSON.stringify(initDataObj);
-                const url = "https://plankton-app-vzfoe.ondigitalocean.app/api/login";
+        //     // Define the function to post an authentication request
+        //     app.postAuthRequest = function (authData, callback) {
+        //         const initData = window.Telegram.WebApp.initData;
+        //         const initDataObj = {
+        //             init_data: initData
+        //         };
+        //         const initDataJson = JSON.stringify(initDataObj);
+        //         const url = "https://plankton-app-vzfoe.ondigitalocean.app/api/login";
 
-                console.log("Init data json: ", initDataJson);
+        //         console.log("Init data json: ", initDataJson);
 
-                fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: initDataJson
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        return response.json(); // Assuming the response is JSON
-                    })
-                    .then(data => {
-                        console.log("Authentication response:", data);
-                        if (callback) callback(null, data);
-                    })
-                    .catch(error => {
-                        console.error("Error during authentication request:", error);
-                        if (callback) callback(error, null);
-                    });
-            };
-            console.log("Posting: ", initDataJson);
-            app.postAuthRequest(function (error, response) {
-                if (error) {
-                    console.error("Error callback:", error);
-                } else {
-                    console.log("Success callback:", response);
-                }
-            });
-        }
+        //         fetch(url, {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             },
+        //             body: initDataJson
+        //         })
+        //             .then(response => {
+        //                 if (!response.ok) {
+        //                     throw new Error(`HTTP error! status: ${response.status}`);
+        //                 }
+        //                 return response.json(); // Assuming the response is JSON
+        //             })
+        //             .then(data => {
+        //                 console.log("Authentication response:", data);
+        //                 if (callback) callback(null, data);
+        //             })
+        //             .catch(error => {
+        //                 console.error("Error during authentication request:", error);
+        //                 if (callback) callback(error, null);
+        //             });
+        //     };
+        //     console.log("Posting: ", initDataJson);
+        //     app.postAuthRequest(function (error, response) {
+        //         if (error) {
+        //             console.error("Error callback:", error);
+        //         } else {
+        //             console.log("Success callback:", response);
+        //         }
+        //     });
+        // }
 
         window.addEventListener('load', function () {
             setTimeout(expandMiniApp, 10);
-            setTimeout(lateLogin, 1000);
+            // setTimeout(lateLogin, 1000);
         });
     </script>
 </head>
