@@ -7,53 +7,6 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
-    
-    <!-- Authorization request -->
-    <script>
-        // Define the app object if needed
-        var app = app || {};
-        const initData = window.Telegram.WebApp.initData;
-
-        // Set the authData using Telegram-provided information
-        const authData = {
-            init_data: initData // Telegram-provided init_data as "query_id=1234"
-        };
-
-        // Define the function to post an authentication request
-        app.postAuthRequest = function (authData, callback) {
-            const url = "https://plankton-app-vzfoe.ondigitalocean.app/api/login";
-
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(authData)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json(); // Assuming the response is JSON
-            })
-            .then(data => {
-                console.log("Authentication response:", data);
-                if (callback) callback(null, data);
-            })
-            .catch(error => {
-                console.error("Error during authentication request:", error);
-                if (callback) callback(error, null);
-            });
-        };
-
-        app.postAuthRequest(function (error, response) {
-            if (error) {
-                console.error("Error callback:", error);
-            } else {
-                console.log("Success callback:", response);
-            }
-        });
-    </script>
 
     <!-- Ads initialization -->
     <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
@@ -144,6 +97,53 @@
 }
     </style>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<!-- Authorization request -->
+<script>
+    // Define the app object if needed
+    var app = app || {};
+    const initData = window.Telegram.WebApp.initData;
+
+    // Set the authData using Telegram-provided information
+    const authData = {
+        init_data: initData // Telegram-provided init_data as "query_id=1234"
+    };
+
+    // Define the function to post an authentication request
+    app.postAuthRequest = function (authData, callback) {
+        const url = "https://plankton-app-vzfoe.ondigitalocean.app/api/login";
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(authData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json(); // Assuming the response is JSON
+        })
+        .then(data => {
+            console.log("Authentication response:", data);
+            if (callback) callback(null, data);
+        })
+        .catch(error => {
+            console.error("Error during authentication request:", error);
+            if (callback) callback(error, null);
+        });
+    };
+
+    app.postAuthRequest(function (error, response) {
+        if (error) {
+            console.error("Error callback:", error);
+        } else {
+            console.log("Success callback:", response);
+        }
+    });
+    </script>
+
     <script>
         window.Telegram.WebApp.expand();
         function expandMiniApp() {
