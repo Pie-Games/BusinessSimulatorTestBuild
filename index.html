@@ -125,8 +125,10 @@
 
     // Set the authData using Telegram-provided information
     const authData = {
-        init_data: initData // Telegram-provided init_data as "query_id=1234"
+        init_data: initData
     };
+
+    console.log("Init data: ", initData);
 
     // Define the function to post an authentication request
     app.postAuthRequest = function (authData, callback) {
