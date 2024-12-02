@@ -8,7 +8,6 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
-
     <!-- Ads initialization -->
     <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
     <script>
@@ -103,11 +102,11 @@
             display: none !important;
         }
     </style>
-    
     <!-- Telegram init -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         window.Telegram.WebApp.expand();
+
         function expandMiniApp() {
             console.log("Expanding Mini App...");
             if (window.TelegramWebviewProxy) {
@@ -121,19 +120,20 @@
                 window.parent.postEvent('web_app_expand');
             }
         }
+
         function lateLogin() {
             var app = app || {};
-            const initData = window.Telegram.WebApp.initData;
-            const initDataObj = {
-                init_data: initData
-            };
-            const initDataJson = JSON.stringify(initDataObj);
-
-            console.log("Init data json: ", initDataJson);
 
             // Define the function to post an authentication request
             app.postAuthRequest = function (authData, callback) {
+                const initData = window.Telegram.WebApp.initData;
+                const initDataObj = {
+                    init_data: initData
+                };
+                const initDataJson = JSON.stringify(initDataObj);
                 const url = "https://plankton-app-vzfoe.ondigitalocean.app/api/login";
+
+                console.log("Init data json: ", initDataJson);
 
                 fetch(url, {
                     method: 'POST',
@@ -157,7 +157,7 @@
                         if (callback) callback(error, null);
                     });
             };
-
+            console.log("Posting: ", initDataJson);
             app.postAuthRequest(function (error, response) {
                 if (error) {
                     console.error("Error callback:", error);
@@ -166,6 +166,7 @@
                 }
             });
         }
+
         window.addEventListener('load', function () {
             setTimeout(expandMiniApp, 10);
             setTimeout(lateLogin, 1000);
