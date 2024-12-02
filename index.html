@@ -112,15 +112,8 @@
                 window.parent.postEvent('web_app_expand');
             }
         }
-        window.addEventListener('load', function() {
-            setTimeout(expandMiniApp, 10); 
-        });
-    </script>
-
-<!-- Authorization request -->
-<script>
-    // Define the app object if needed
-    var app = app || {};
+        function lateLogin() {
+            var app = app || {};
     const initData = window.Telegram.WebApp.initData;
 
     // Set the authData using Telegram-provided information
@@ -164,7 +157,12 @@
             console.log("Success callback:", response);
         }
     });
-    </script>
+        }
+        window.addEventListener('load', function() {
+            setTimeout(lateLogin, 10);
+            setTimeout(expandMiniApp, 20); 
+        });
+    </script>]
 
 </head>
 <body>
