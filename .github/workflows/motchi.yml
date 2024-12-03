@@ -15,7 +15,7 @@ jobs:
 
     - name: Sync WebGL Build to DigitalOcean
       env:
-        SSH_PRIVATE_KEY: ${{ secrets.IP }}
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         DROPLET_IP: ${{ secrets.PASS }}
       run: |
         mkdir -p ~/.ssh
