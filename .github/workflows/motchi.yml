@@ -1,4 +1,4 @@
-name: Byz Tycoon Build
+name: Deploy Unity Build
 
 on:
   push:
@@ -10,16 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Sync WebGL Build to DigitalOcean
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        DROPLET_IP: ${{ secrets.PASS }}
-      run: |
-        mkdir -p ~/.ssh
-        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H $DROPLET_IP >> ~/.ssh/known_hosts
-        rsync -avz --delete ./Build/ root@$DROPLET_IP:/var/www/html/
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
+      - name: Deploy files to server
+        run: |
+          rsync -avz --delete ./path/to/build/ root@164.92.253.209:/var/www/biztycoongame/
