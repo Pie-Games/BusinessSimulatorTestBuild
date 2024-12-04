@@ -22,10 +22,6 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-          
-      - name: List files in build directory
-        run: |
-          ls -l ./Data
 
       - name: Deploy files to server
         run: |
