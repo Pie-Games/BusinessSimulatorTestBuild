@@ -20,4 +20,4 @@ jobs:
 
       - name: Deploy files to server
         run: |
-          rsync -avz --delete ./path/to/build/ root@164.92.253.209:/var/www/biztycoongame/
+          rsync -avz --delete ./var/www/biztycoongame/ root@164.92.253.209:/var/www/biztycoongame/
