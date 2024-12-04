@@ -22,7 +22,11 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+          
+      - name: List files in build directory
+        run: |
+          ls -l ./Data
 
       - name: Deploy files to server
         run: |
-          rsync -avz --delete Data root@164.92.253.209:/var/www/biztycoongame
+          rsync -avz --delete ./Data root@164.92.253.209:/var/www/biztycoongame
