@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+    
     <!-- Caching mechanish-->
     <script src="Build/UnityLoader.js?v=2.0.0"></script>
     <link rel="stylesheet" href="style.css?v=2.0.0">
@@ -86,7 +87,6 @@
 
             to {
                 transform: translate(-50%, -50%) rotate(-360deg);
-                /* Reverse direction */
             }
         }
 
@@ -195,13 +195,7 @@
             <div id="unity-build-title">motchi</div>
         </div>
     </div>
-    <!-- Custom overlay div -->
-    <div id="custom-overlay">
-        <!--<img id="truck-icon" src="TemplateData/TRUCK_Icon.png" alt="Truck Icon">-->
-    </div>
-    <!-- Spinning truck PNG image -->
     <img id="spinning-truck" src="TemplateData/TRUCK_Icon.png" alt="Spinning Truck Icon">
-    <!-- Loader text -->
     <div id="loader-text">
         Loading🐌
     </div>
@@ -267,19 +261,13 @@
             createUnityInstance(canvas, config, (progress) => {
                 progressBarFull.style.width = 100 * progress + "%";
             }).then((unityInstance) => {
-                myGameInstance = unityInstance; // Make it globally accessible
+                myGameInstance = unityInstance;
 
                 fullscreenButton.onclick = () => {
                     unityInstance.SetFullscreen(1);
                 };
                 loadingText.style.display = "none";
                 customOverlay.style.display = "flex";
-
-                setTimeout(() => {
-                    //loadingBar.style.display = "none";
-                    //spinningTruck.style.display = "none";
-                    //customOverlay.style.display = "none";
-                }, 2100);
             }).catch((message) => {
                 alert(message);
             });
