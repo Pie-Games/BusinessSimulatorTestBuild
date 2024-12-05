@@ -10,8 +10,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
 
     <!-- Caching mechanish-->
-    <script src="Build/UnityLoader.js?v=2.0.0"></script>
-    <link rel="stylesheet" href="style.css?v=2.0.0">
+    <script>
+        const cacheBuster = Date.now(); // Generates a unique timestamp
+        const script = document.createElement('script');
+        script.src = `Build/UnityLoader.js?v=${cacheBuster}`;
+        document.head.appendChild(script);
+      
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = `style.css?v=${cacheBuster}`;
+        document.head.appendChild(link);
+    </script>
 
     <!-- Ads initialization -->
     <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
