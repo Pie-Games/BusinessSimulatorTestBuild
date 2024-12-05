@@ -26,8 +26,8 @@ jobs:
       - name: Add Cache-Busting Version
         run: |
           TIMESTAMP=$(date +%s)
-          sed -i "s/UnityLoader.js.*/UnityLoader.js?v=$TIMESTAMP/" Build/index.html
-          sed -i "s/style.css.*/style.css?v=$TIMESTAMP/" Build/index.html
+          sed -i "s/UnityLoader.js.*/UnityLoader.js?v=$TIMESTAMP/" ./Data/index.html
+          sed -i "s/style.css.*/style.css?v=$TIMESTAMP/" ./Data/index.html
 
       - name: Deploy files to server
         run: |
