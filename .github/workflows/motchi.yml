@@ -23,12 +23,6 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
-      # - name: Add Cache-Busting Version
-      #   run: |
-      #     TIMESTAMP=$(date +%s)
-      #     sed -i "s/UnityLoader.js.*/UnityLoader.js?v=$TIMESTAMP/" ./DataTest/index.html
-      #     sed -i "s/style.css.*/style.css?v=$TIMESTAMP/" ./DataTest/index.html
-
       - name: Deploy files to server
         run: |
           rsync -avz --delete ./DataTest/ root@165.22.81.244:/var/www/biztycoongametest
