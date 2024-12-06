@@ -157,11 +157,14 @@
     <script>
         function lateLogin() {
             var app = app || {};
+            var initData = window.Telegram.WebApp.initData;
+            console.log("--------------------------");
+            console.log("Init data:", initData);
+            console.log("--------------------------");
 
             // Define the function to post an authentication request
             app.postAuthRequest = function (authData, callback) {
-                var initData = window.Telegram.WebApp.initData;
-                console.log("Init data:", initData);
+                
                 // const initDataObj = {
                 //     init_data: initData
                 // };
