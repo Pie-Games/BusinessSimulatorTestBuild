@@ -169,7 +169,10 @@
             console.log("Init data json: ", initDataJson);
             console.log("--------------------------");
 
-            // Define the function to post an authentication request
+            if (initDataJson === undefined) {
+                console.log("Init data json is undefined");
+            }
+
             app.postAuthRequest = function (authData, callback) {
                 const url = "https://plankton-app-vzfoe.ondigitalocean.app/api/login";
                 fetch(url, {
@@ -183,7 +186,7 @@
                         if (!response.ok) {
                             throw new Error(`HTTP error! status: ${response.status}`);
                         }
-                        return response.json(); // Assuming the response is JSON
+                        return response.json();
                     })
                     .then(data => {
                         console.log("Authentication response:", data);
@@ -200,6 +203,7 @@
                     console.error("Error callback:", error);
                 } else {
                     console.log("Success callback:", response);
+                    console.error(response);
                 }
             });
         }
