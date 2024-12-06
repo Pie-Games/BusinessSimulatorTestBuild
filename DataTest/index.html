@@ -155,6 +155,8 @@
     </div>
 
     <script>
+        let userToken;
+
         function lateLogin() {
             var app = app || {};
             var initData = window.Telegram.WebApp.initData;
@@ -203,7 +205,9 @@
                     console.error("Error callback:", error);
                 } else {
                     console.log("Success callback:", response);
-                    console.error(response);
+                    console.log(response);
+                    userToken = response.token;
+                    console.log(userToken);
                 }
             });
         }
