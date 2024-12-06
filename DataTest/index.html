@@ -126,7 +126,7 @@
 
             // Define the function to post an authentication request
             app.postAuthRequest = function (authData, callback) {
-                const initData = window.Telegram.WebApp.initData;
+                var initData = window.Telegram.WebApp.initData;
                 const initDataObj = {
                     init_data: initData
                 };
