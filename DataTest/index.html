@@ -192,6 +192,11 @@
                     })
                     .then(data => {
                         console.log("Authentication response:", data);
+
+                        console.log(data);
+                        userToken = data.token;
+                        console.log(userToken);
+
                         if (callback) callback(null, data);
                     })
                     .catch(error => {
@@ -205,9 +210,6 @@
                     console.error("Error callback:", error);
                 } else {
                     console.log("Success callback:", response);
-                    console.log(response);
-                    userToken = response.token;
-                    console.log(userToken);
                 }
             });
         }
