@@ -19,6 +19,7 @@
         });
     </script>
 
+    <!-- CSS settings -->
     <style>
         body,
         html {
@@ -101,6 +102,8 @@
             display: none !important;
         }
     </style>
+
+    <!-- Telegram init -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         window.Telegram.WebApp.expand();
@@ -130,6 +133,7 @@
                 const initDataJson = JSON.stringify(initDataObj);
                 const url = "https://plankton-app-vzfoe.ondigitalocean.app/api/login";
 
+                console.log("Init data:", initData);
                 console.log("Init data json: ", initDataJson);
 
                 fetch(url, {
@@ -166,7 +170,7 @@
 
         window.addEventListener('load', function () {
             setTimeout(expandMiniApp, 10);
-            setTimeout(lateLogin, 1000);
+            setTimeout(lateLogin, 10);
         });
     </script>
 </head>
