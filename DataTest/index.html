@@ -160,16 +160,16 @@
         function lateLogin() {
             var app = app || {};
             var initData = window.Telegram.WebApp.initData;
-            // console.log("--------------------------");
-            // console.log("Init data:", initData);
-            // console.log("--------------------------");
+            console.log("--------------------------");
+            console.log("Init data:", initData);
+            console.log("--------------------------");
 
             var initDataObj = { init_data: initData };
             var initDataJson = JSON.stringify(initDataObj);
             
-            // console.log("--------------------------");
-            // console.log("Init data json: ", initDataJson);
-            // console.log("--------------------------");
+            console.log("--------------------------");
+            console.log("Init data json: ", initDataJson);
+            console.log("--------------------------");
 
             if (initDataJson === undefined) {
                 console.log("Init data json is undefined");
@@ -193,6 +193,7 @@
                     .then(data => {
                         console.log("Authentication response:", data);
                         userToken = data.token;
+                        console.log("User token fetched: "+ userToken);
                         if (callback) callback(null, data);
                     })
                     .catch(error => {
