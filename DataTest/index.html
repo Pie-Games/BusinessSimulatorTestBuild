@@ -156,6 +156,7 @@
 
     <script>
         let userToken;
+        let unityTokenReady = false;
 
         function lateLogin() {
             var app = app || {};
@@ -192,6 +193,7 @@
                     })
                     .then(data => {
                         userToken = data.token;
+                        unityTokenReady = true;
                         if (callback) callback(null, data);
                     })
                     .catch(error => {
