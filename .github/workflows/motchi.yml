@@ -17,7 +17,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           cp .github/known_hosts ~/.ssh/known_hosts
-
+          
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
@@ -26,3 +26,7 @@ jobs:
       - name: Deploy files to server
         run: |
           rsync -avz --delete ./DataTest/ root@165.22.81.244:/var/www/biztycoongametest
+          
+      - name: Compress Unity Build Files
+        run: |
+          find Build/ -type f -name "*.unityweb" -exec brotli --quality=11 {} \;
