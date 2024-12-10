@@ -14,6 +14,7 @@
     <type fullname="StallHarvestController" preserve="all" />
     <type fullname="StallHarvestView" preserve="all" />
     <type fullname="StallManufacturerBreadSpine" preserve="all" />
+    <type fullname="StallManufacturerCheeserSpine" preserve="all" />
     <type fullname="StallManufacturerChickenSpine" preserve="all" />
     <type fullname="StallManufacturerController" preserve="all" />
     <type fullname="StallManufacturerJuicerSpine" preserve="all" />
