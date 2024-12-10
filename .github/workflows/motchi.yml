@@ -29,4 +29,4 @@ jobs:
           
       - name: Compress Unity Build Files
         run: |
-          find /Build/ -type f -name "*.unityweb" -exec brotli --quality=11 {} \;
+          find ./DataTest/Build/ -type f -name "*.unityweb" -exec brotli --quality=11 {} \;
