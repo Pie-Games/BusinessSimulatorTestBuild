@@ -22,15 +22,15 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-
-      - name: Deploy files to server
-        run: |
-          rsync -avz --delete ./DataTest/ root@165.22.81.244:/var/www/biztycoongametest
   
       # Probably not working
-      - name: Install Brotli
-        run: sudo apt-get update && sudo apt-get install brotli -y
+      # - name: Install Brotli
+      #   run: sudo apt-get update && sudo apt-get install brotli -y
 
       - name: Compress Unity Build Files
         run: |
           find ./DataTest/Build/ -type f -name "*.unityweb" -exec brotli --quality=1 --force {} \;
+
+      - name: Deploy files to server
+        run: |
+          rsync -avz --delete ./DataTest/ root@165.22.81.244:/var/www/biztycoongametest
