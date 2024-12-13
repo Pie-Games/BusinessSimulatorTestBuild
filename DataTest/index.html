@@ -146,23 +146,23 @@
 
         lateLogin();
 
-        function unityShowBanner(msg, type) {
-            function updateBannerVisibility() {
-                warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
-            }
-            var div = document.createElement('div');
-            div.innerHTML = msg;
-            warningBanner.appendChild(div);
-            if (type == 'error') div.style = 'background: red; padding: 10px;';
-            else {
-                if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-                setTimeout(function () {
-                    warningBanner.removeChild(div);
-                    updateBannerVisibility();
-                }, 5000);
-            }
-            updateBannerVisibility();
-        }
+        // function unityShowBanner(msg, type) {
+        //     function updateBannerVisibility() {
+        //         warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        //     }
+        //     var div = document.createElement('div');
+        //     div.innerHTML = msg;
+        //     warningBanner.appendChild(div);
+        //     if (type == 'error') div.style = 'background: red; padding: 10px;';
+        //     else {
+        //         if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+        //         setTimeout(function () {
+        //             warningBanner.removeChild(div);
+        //             updateBannerVisibility();
+        //         }, 5000);
+        //     }
+        //     updateBannerVisibility();
+        // }
 
         var buildUrl = "Build";
         var loaderUrl = buildUrl + "/motchiBuild.loader.js";
@@ -174,18 +174,16 @@
             companyName: "PieGames",
             productName: "BizTycoon",
             productVersion: "1.0",
-            showBanner: unityShowBanner,
+            // showBanner: unityShowBanner,
         };
 
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            container.className = "unity-mobile";
-            canvas.className = "unity-mobile";
-        } else {
-            canvas.style.width = "100%";
-            canvas.style.height = "100%";
-        }
-
-        loadingBar.style.display = "block";
+        // if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        //     container.className = "unity-mobile";
+        //     canvas.className = "unity-mobile";
+        // } else {
+        //     canvas.style.width = "100%";
+        //     canvas.style.height = "100%";
+        // }
 
         var myGameInstance = null;
 
@@ -193,16 +191,8 @@
         script.src = loaderUrl;
         script.onload = () => {
             createUnityInstance(canvas, config, (progress) => {
-                progressBarFull.style.width = 100 * progress + "%";
             }).then((unityInstance) => {
                 myGameInstance = unityInstance;
-
-                fullscreenButton.onclick = () => {
-                    unityInstance.SetFullscreen(1);
-                };
-                loadingText.style.display = "none";
-                customOverlay.style.display = "flex";
-
             }).catch((message) => {
                 alert(message);
             });
