@@ -63,24 +63,21 @@
         </div>
     </div>
 
-    <img id="characted-background" src="TemplateData/LoadingScreen/CIRCLE_.png" alt="Spinning Truck Icon">
-    <img id="characted-animation" src="TemplateData/LoadingScreen/WALK_1.png" alt="Spinning Truck Icon">
+    <img id="characted-background" src="TemplateData/LoadingScreen/CIRCLE_.png">
+    <div id="character-container">
+        <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_1.png">
+        <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_2.png">
+        <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_3.png">
+        <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4A.png">
+        <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_1.png">
+        <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_2.png">
+        <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_3.png">
+        <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4B.png">
+    </div>
 
     <!-- Game initialization, animations, etc -->
     <script>
-        const images = [
-            "TemplateData/LoadingScreen/WALK_1.png",
-            "TemplateData/LoadingScreen/WALK_2.png",
-            "TemplateData/LoadingScreen/WALK_3.png",
-            "TemplateData/LoadingScreen/WALK_4A.png",
-            "TemplateData/LoadingScreen/WALK_1.png",
-            "TemplateData/LoadingScreen/WALK_2.png",
-            "TemplateData/LoadingScreen/WALK_3.png",
-            "TemplateData/LoadingScreen/WALK_4B.png",
-        ];
-
         var backgroundImage = document.getElementById("characted-background");
-        var animatedImage = document.getElementById("characted-animation");
         var container = document.querySelector("#unity-container");
         var canvas = document.querySelector("#unity-canvas");
         var loadingBar = document.querySelector("#unity-loading-bar");
@@ -88,16 +85,15 @@
         var fullscreenButton = document.querySelector("#unity-fullscreen-button");
         var warningBanner = document.querySelector("#unity-warning");
         var loadingText = document.getElementById("loader-text");
-        // var customOverlay = document.getElementById("custom-overlay");   
-        // var spinningTruck = document.getElementById("spinning-truck");
-        
-        // Set initial image
+
+        const sprites = document.querySelectorAll('.character-sprite');
         let currentIndex = 0;
-        animatedImage.style.backgroundImage = `url(${images[currentIndex]})`;
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % images.length;
-            animatedImage.style.backgroundImage = `url(${images[currentIndex]})`;
-        }, 250);
+        function updateSprites() {
+            sprites.forEach((sprite) => (sprite.style.display = 'none'));
+            sprites[currentIndex].style.display = 'block';
+            currentIndex = (currentIndex + 1) % sprites.length;
+        }
+        setInterval(updateSprites, 250);
 
         // Getting user token
         let userToken;
