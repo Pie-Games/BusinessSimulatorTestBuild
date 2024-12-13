@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="TemplateData/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
 
-    <!-- Socket server init --> 
+    <!-- Socket server init -->
     <script src="https://cdn.socket.io/4.0.0/socket.io.js"></script>
 
     <!-- Ads initialization -->
@@ -24,6 +24,10 @@
 
     <!-- CSS settings -->
     <style>
+        #unity-logo {
+            display: none !important;
+        }
+
         body,
         html {
             margin: 0;
@@ -75,9 +79,17 @@
             top: 33%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 150px;
+            width: 300px;
             z-index: 10000;
-            /* animation: spin 2s linear infinite; */
+        }
+
+        #characted-background {
+            position: absolute;
+            top: 33%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            z-index: 9999;
         }
 
         @keyframes spin {
@@ -90,7 +102,7 @@
             }
         }
 
-        #loader-text {
+        /* #loader-text {
             position: absolute;
             top: 60%;
             left: 50%;
@@ -99,11 +111,7 @@
             font-size: 1.2em;
             text-align: center;
             z-index: 10000;
-        }
-
-        #unity-logo {
-            display: none !important;
-        }
+        } */
     </style>
 
     <!-- Telegram init -->
@@ -152,7 +160,14 @@
     <!-- </div> --> -->
 
     <!-- Change character image each 1/12 second -->
+    <img id="characted-background" src="TemplateData/LoadingScreen/CIRCLE_.png" alt="Spinning Truck Icon">
     <img id="characted-animation" src="TemplateData/LoadingScreen/WALK_1.png" alt="Spinning Truck Icon">
+
+    <!-- <div id="loader-text">
+        Loading Test Build 1.1.5🐌
+    </div> -->
+
+    <!-- Game initialization, animations, etc -->
     <script>
         const images = [
             "TemplateData/LoadingScreen/WALK_1.png",
@@ -165,33 +180,29 @@
             "TemplateData/LoadingScreen/WALK_4B.png",
         ];
 
-        // Get the image element
+        const backgroundImage = document.getElementById("characted-background");
         const animatedImage = document.getElementById("characted-animation");
-            
-        // Current frame index
+        var container = document.querySelector("#unity-container");
+        var canvas = document.querySelector("#unity-canvas");
+        var loadingBar = document.querySelector("#unity-loading-bar");
+        var progressBarFull = document.querySelector("#unity-progress-bar-full");
+        var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+        var warningBanner = document.querySelector("#unity-warning");
+        // var customOverlay = document.getElementById("custom-overlay");   
+        // var spinningTruck = document.getElementById("spinning-truck");
+        var loadingText = document.getElementById("loader-text");
+
         let currentFrame = 0;
-            
-        // Update interval (1/12 second = ~83 milliseconds)
-        const frameInterval = 1000 / 4;
-            
-        // Function to update the image
+
+        const frameInterval = 250;
+
         function updateAnimation() {
-            // Update the `src` to the next image
             animatedImage.src = images[currentFrame];
-            
-            // Increment frame index
             currentFrame = (currentFrame + 1) % images.length; // Loop back to 0 after the last image
         }
-        
-        // Start the animation
         setInterval(updateAnimation, frameInterval);
-    </script>
 
-    <div id="loader-text">
-        Loading Test Build 1.1.5🐌
-    </div>
-
-    <script>
+        // User login setting
         let userToken;
         let unityTokenReady = false;
 
@@ -204,7 +215,7 @@
 
             var initDataObj = { init_data: initData };
             var initDataJson = JSON.stringify(initDataObj);
-            
+
             // console.log("--------------------------");
             // console.log("Init data json: ", initDataJson);
             // console.log("--------------------------");
@@ -238,7 +249,7 @@
                         if (callback) callback(error, null);
                     });
             };
-            
+
             // console.log("Posting: ", initDataJson);
             app.postAuthRequest(function (error, response) {
                 if (error) {
@@ -250,15 +261,6 @@
         }
 
         lateLogin();
-        var container = document.querySelector("#unity-container");
-        var canvas = document.querySelector("#unity-canvas");
-        var loadingBar = document.querySelector("#unity-loading-bar");
-        var progressBarFull = document.querySelector("#unity-progress-bar-full");
-        var fullscreenButton = document.querySelector("#unity-fullscreen-button");
-        var warningBanner = document.querySelector("#unity-warning");
-        // var customOverlay = document.getElementById("custom-overlay");
-        var spinningTruck = document.getElementById("spinning-truck");
-        var loadingText = document.getElementById("loader-text");
 
         function unityShowBanner(msg, type) {
             function updateBannerVisibility() {
@@ -303,26 +305,25 @@
 
         var myGameInstance = null;
 
-        var script = document.createElement("script");
-        script.src = loaderUrl;
-        script.onload = () => {
-            createUnityInstance(canvas, config, (progress) => {
-                progressBarFull.style.width = 100 * progress + "%";
-            }).then((unityInstance) => {
-                myGameInstance = unityInstance;
+        // var script = document.createElement("script");
+        // script.src = loaderUrl;
+        // script.onload = () => {
+        //     createUnityInstance(canvas, config, (progress) => {
+        //         progressBarFull.style.width = 100 * progress + "%";
+        //     }).then((unityInstance) => {
+        //         myGameInstance = unityInstance;
 
-                fullscreenButton.onclick = () => {
-                    unityInstance.SetFullscreen(1);
-                };
-                loadingText.style.display = "none";
-                customOverlay.style.display = "flex";
+        //         fullscreenButton.onclick = () => {
+        //             unityInstance.SetFullscreen(1);
+        //         };
+        //         loadingText.style.display = "none";
+        //         customOverlay.style.display = "flex";
 
-            }).catch((message) => {
-                alert(message);
-            });
-        }
-
-        document.body.appendChild(script);
+        //     }).catch((message) => {
+        //         alert(message);
+        //     });
+        // }
+        // document.body.appendChild(script);
     </script>
 </body>
 
