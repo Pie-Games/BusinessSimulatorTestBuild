@@ -63,15 +63,6 @@
                     <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4B.png">
                 </div>
             </div>
-            <div id="unity-progress-bar-empty">
-                <div id="unity-progress-bar-full"></div>
-            </div>
-        </div>
-        <div id="unity-warning"></div>
-        <div id="unity-footer">
-            <div id="unity-webgl-logo"></div>
-            <div id="unity-fullscreen-button"></div>
-            <div id="unity-build-title">motchi</div>
         </div>
     </div>
 
@@ -134,7 +125,6 @@
                     });
             };
 
-            // console.log("Posting: ", initDataJson);
             app.postAuthRequest(function (error, response) {
                 if (error) {
                     console.error("Error callback:", error);
@@ -146,24 +136,6 @@
 
         lateLogin();
 
-        // function unityShowBanner(msg, type) {
-        //     function updateBannerVisibility() {
-        //         warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
-        //     }
-        //     var div = document.createElement('div');
-        //     div.innerHTML = msg;
-        //     warningBanner.appendChild(div);
-        //     if (type == 'error') div.style = 'background: red; padding: 10px;';
-        //     else {
-        //         if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-        //         setTimeout(function () {
-        //             warningBanner.removeChild(div);
-        //             updateBannerVisibility();
-        //         }, 5000);
-        //     }
-        //     updateBannerVisibility();
-        // }
-
         var buildUrl = "Build";
         var loaderUrl = buildUrl + "/motchiBuild.loader.js";
         var config = {
@@ -174,7 +146,6 @@
             companyName: "PieGames",
             productName: "BizTycoon",
             productVersion: "1.0",
-            // showBanner: unityShowBanner,
         };
 
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
