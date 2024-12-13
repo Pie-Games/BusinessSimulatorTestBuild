@@ -74,7 +74,11 @@ canvas {
 }
 
 #unity-loading-bar {
-    display: none !important;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none
 }
 
 #unity-logo {
@@ -82,11 +86,20 @@ canvas {
 }
 
 #unity-progress-bar-empty {
-    display: none !important;
+    width: 141px;
+    height: 18px;
+    margin-top: 10px;
+    margin-left: 6.5px;
+    background: url('progress-bar-empty-dark.png') no-repeat center;
+    display: none;
 }
 
 #unity-progress-bar-full {
-    display: none !important;
+    width: 0%;
+    height: 18px;
+    margin-top: 10px;
+    background: url('progress-bar-full-dark.png') no-repeat center;
+    display: none;
 }
 
 #unity-footer {
