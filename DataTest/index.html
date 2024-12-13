@@ -63,30 +63,53 @@
                     <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4B.png">
                 </div>
                 <div id="load-text">
-                    Some hints for the player
+                    Text
                 </div>
                 <img class="spinning-load-sprite" src="TemplateData/LoadingScreen/CIRCLE_Money_.png">
             </div>
         </div>
     </div>
 
-    <!-- Game initialization, animations, etc -->
+    <!-- Script part -->
     <script>
         var backgroundImage = document.getElementById("characted-background");
         var container = document.querySelector("#unity-container");
         var canvas = document.querySelector("#unity-canvas");
         var sprites = document.querySelectorAll('.character-sprite');
+        var loadingHint = document.getElementById('load-text');
+
+        // Animating text update
+        const phrases = [
+            "Earning 10 000 bucks earns you 1 $BIZTY coin",
+            "Improve objects and workers to increase your income",
+            "Don't forget to collect passive income daily",
+            "The more expensive the resources are, the more income you get",
+            "Workers can get tired, walk up to them to wake them up",
+            "Buildings break down from time to time, go over to fix them",
+            "Open new businesses to generate even more income",
+            "Tops in the leagues get rewards every day",
+            "Businesses continue to generate passive income while you're in the game",
+            "For every friend you invite, you will receive a reward and earn a percentage of their income"
+        ];
+
+        let textIndex = 0;
+        function updateParagraph() {
+            const randomIndex = Math.floor(Math.random() * phrases.length);
+            loadingHint.textContent = phrases[randomIndex];
+        }
+        updateParagraph();
+        setInterval(updateParagraph, 5000);
 
         // Animating character
-        let currentIndex = 0;
+        let charactedIndex = 0;
         function updateSprites() {
             sprites.forEach((sprite) => (sprite.style.display = 'none'));
-            sprites[currentIndex].style.display = 'block';
-            currentIndex = (currentIndex + 1) % sprites.length;
+            sprites[charactedIndex].style.display = 'block';
+            charactedIndex = (charactedIndex + 1) % sprites.length;
         }
         setInterval(updateSprites, 250);
 
-        // Getting user token
+        // Logging to backend
         let userToken;
         let unityTokenReady = false;
         function lateLogin() {
@@ -136,6 +159,7 @@
 
         lateLogin();
 
+        // Starting build
         var buildUrl = "Build";
         var loaderUrl = buildUrl + "/motchiBuild.loader.js";
         var config = {
