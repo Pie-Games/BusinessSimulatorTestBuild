@@ -43,26 +43,6 @@ canvas {
     z-index: 9999;
 }
 
-#spinning-truck {
-    position: absolute;
-    top: 33%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 150px;
-    z-index: 10000;
-    animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-    from {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-
-    to {
-        transform: translate(-50%, -50%) rotate(-360deg);
-    }
-}
-
 #custom-overlay {
     position: absolute;
     top: 0;

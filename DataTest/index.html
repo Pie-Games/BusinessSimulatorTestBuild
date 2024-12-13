@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | motchi</title>
+    <link rel="shortcut icon" href="TemplateData/sign.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
 
@@ -72,7 +73,6 @@
         var canvas = document.querySelector("#unity-canvas");
         var loadingBar = document.querySelector("#unity-loading-bar");
         var progressBarFull = document.querySelector("#unity-progress-bar-full");
-        var customOverlay = document.getElementById("custom-overlay");
         var fullscreenButton = document.querySelector("#unity-fullscreen-button");
         var warningBanner = document.querySelector("#unity-warning");
         var loadingText = document.getElementById("loader-text");
@@ -157,13 +157,13 @@
         }
 
         var myGameInstance = null;
+
         var script = document.createElement("script");
         script.src = loaderUrl;
         script.onload = () => {
             createUnityInstance(canvas, config, (progress) => {
             }).then((unityInstance) => {
                 myGameInstance = unityInstance;
-                customOverlay.style.display = "flex";
             }).catch((message) => {
                 alert(message);
             });
