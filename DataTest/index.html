@@ -23,7 +23,7 @@
     </script>
 
     <!-- Telegram init -->
-    <script src="https://telegram.org/js/   telegram-web-app.js"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         window.Telegram.WebApp.expand();
         function expandMiniApp() {
@@ -46,7 +46,6 @@
     </script>
 </head>
 
-<!-- Main body setup -->
 <body>
     <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas" tabindex="-1"></canvas>
@@ -60,13 +59,23 @@
         <div id="unity-footer">
             <div id="unity-webgl-logo"></div>
             <div id="unity-fullscreen-button"></div>
-            <div id="unity-build-title">Biz Tycoon</div>
+            <div id="unity-build-title">motchi</div>
         </div>
     </div>
 
+    <!-- <div id="custom-overlay">
+        <!--<img id="truck-icon" src="TemplateData/TRUCK_Icon.png" alt="Truck Icon">-->
+    <!-- </div> --> -->
+
+    <!-- Change character image each 1/12 second -->
     <img id="characted-background" src="TemplateData/LoadingScreen/CIRCLE_.png" alt="Spinning Truck Icon">
     <img id="characted-animation" src="TemplateData/LoadingScreen/WALK_1.png" alt="Spinning Truck Icon">
 
+    <!-- <div id="loader-text">
+        Loading Test Build 1.1.5🐌
+    </div> -->
+
+    <!-- Game initialization, animations, etc -->
     <script>
         const images = [
             "TemplateData/LoadingScreen/WALK_1.png",
@@ -97,7 +106,7 @@
 
         function updateAnimation() {
             animatedImage.src = images[currentFrame];
-            currentFrame = (currentFrame + 1) % images.length;
+            currentFrame = (currentFrame + 1) % images.length; // Loop back to 0 after the last image
         }
         setInterval(updateAnimation, frameInterval);
 
@@ -200,7 +209,29 @@
             canvas.style.height = "100%";
         }
 
+        loadingBar.style.display = "block";
+
         var myGameInstance = null;
+
+        // var script = document.createElement("script");
+        // script.src = loaderUrl;
+        // script.onload = () => {
+        //     createUnityInstance(canvas, config, (progress) => {
+        //         progressBarFull.style.width = 100 * progress + "%";
+        //     }).then((unityInstance) => {
+        //         myGameInstance = unityInstance;
+
+        //         fullscreenButton.onclick = () => {
+        //             unityInstance.SetFullscreen(1);
+        //         };
+        //         loadingText.style.display = "none";
+        //         customOverlay.style.display = "flex";
+
+        //     }).catch((message) => {
+        //         alert(message);
+        //     });
+        // }
+        // document.body.appendChild(script);
     </script>
 </body>
 
