@@ -50,7 +50,19 @@
     <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas" tabindex="-1"></canvas>
         <div id="unity-loading-bar">
-            <div id="unity-logo"></div>
+            <div id="custom-overlay">
+                <img id="characted-background" src="TemplateData/LoadingScreen/CIRCLE_.png">
+                <div id="character-container">
+                    <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_1.png">
+                    <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_2.png">
+                    <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_3.png">
+                    <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4A.png">
+                    <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_1.png">
+                    <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_2.png">
+                    <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_3.png">
+                    <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4B.png">
+                </div>
+            </div>
             <div id="unity-progress-bar-empty">
                 <div id="unity-progress-bar-full"></div>
             </div>
@@ -60,20 +72,6 @@
             <div id="unity-webgl-logo"></div>
             <div id="unity-fullscreen-button"></div>
             <div id="unity-build-title">motchi</div>
-        </div>
-    </div>
-
-    <div id="custom-overlay">
-        <img id="characted-background" src="TemplateData/LoadingScreen/CIRCLE_.png">
-        <div id="character-container">
-            <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_1.png">
-            <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_2.png">
-            <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_3.png">
-            <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4A.png">
-            <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_1.png">
-            <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_2.png">
-            <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_3.png">
-            <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4B.png">
         </div>
     </div>
 
@@ -103,16 +101,8 @@
         function lateLogin() {
             var app = app || {};
             var initData = window.Telegram.WebApp.initData;
-            // console.log("--------------------------");
-            // console.log("Init data:", initData);
-            // console.log("--------------------------");
-
             var initDataObj = { init_data: initData };
             var initDataJson = JSON.stringify(initDataObj);
-
-            // console.log("--------------------------");
-            // console.log("Init data json: ", initDataJson);
-            // console.log("--------------------------");
 
             if (initDataJson === undefined) {
                 console.log("Init data json is undefined");
@@ -181,8 +171,8 @@
             frameworkUrl: buildUrl + "/motchiBuild.framework.js.unityweb",
             codeUrl: buildUrl + "/motchiBuild.wasm.unityweb",
             streamingAssetsUrl: "StreamingAssets",
-            companyName: "DefaultCompany",
-            productName: "motchi",
+            companyName: "PieGames",
+            productName: "BizTycoon",
             productVersion: "1.0",
             showBanner: unityShowBanner,
         };

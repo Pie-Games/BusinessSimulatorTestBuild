@@ -43,6 +43,16 @@ canvas {
     z-index: 9999;
 }
 
+#spinning-truck {
+    position: absolute;
+    top: 33%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    z-index: 10000;
+    animation: spin 2s linear infinite;
+}
+
 @keyframes spin {
     from {
         transform: translate(-50%, -50%) rotate(0deg);
@@ -65,8 +75,7 @@ canvas {
     justify-content: center;
     align-items: center;
     font-size: 2em;
-    z-index: 9999;
-    display: none;
+    z-index: 9998;
 }
 
 #unity-container {
@@ -129,10 +138,6 @@ canvas {
 }
 
 #unity-footer {
-    position: relative
-}
-
-.unity-mobile #unity-footer {
     display: none
 }
 
@@ -140,7 +145,8 @@ canvas {
     float: left;
     width: 204px;
     height: 38px;
-    background: url('webgl-logo.png') no-repeat center
+    background: url('webgl-logo.png') no-repeat center;
+    display: none;
 }
 
 #unity-build-title {
@@ -148,7 +154,8 @@ canvas {
     margin-right: 10px;
     line-height: 38px;
     font-family: arial;
-    font-size: 18px
+    font-size: 18px;
+    display: none;
 }
 
 #unity-fullscreen-button {
@@ -156,7 +163,8 @@ canvas {
     float: right;
     width: 38px;
     height: 38px;
-    background: url('fullscreen-button.png') no-repeat center
+    background: url('fullscreen-button.png') no-repeat center;
+    display: none;
 }
 
 #unity-warning {
@@ -166,5 +174,5 @@ canvas {
     transform: translate(-50%);
     background: white;
     padding: 10px;
-    display: none
+    display: none;
 }
