@@ -47,7 +47,6 @@
 </head>
 
 <!-- Main body setup -->
-
 <body>
     <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas" tabindex="-1"></canvas>
@@ -69,6 +68,39 @@
     <img id="characted-animation" src="TemplateData/LoadingScreen/WALK_1.png" alt="Spinning Truck Icon">
 
     <script>
+        const images = [
+            "TemplateData/LoadingScreen/WALK_1.png",
+            "TemplateData/LoadingScreen/WALK_2.png",
+            "TemplateData/LoadingScreen/WALK_3.png",
+            "TemplateData/LoadingScreen/WALK_4A.png",
+            "TemplateData/LoadingScreen/WALK_1.png",
+            "TemplateData/LoadingScreen/WALK_2.png",
+            "TemplateData/LoadingScreen/WALK_3.png",
+            "TemplateData/LoadingScreen/WALK_4B.png",
+        ];
+
+        const backgroundImage = document.getElementById("characted-background");
+        const animatedImage = document.getElementById("characted-animation");
+        var container = document.querySelector("#unity-container");
+        var canvas = document.querySelector("#unity-canvas");
+        var loadingBar = document.querySelector("#unity-loading-bar");
+        var progressBarFull = document.querySelector("#unity-progress-bar-full");
+        var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+        var warningBanner = document.querySelector("#unity-warning");
+        // var customOverlay = document.getElementById("custom-overlay");   
+        // var spinningTruck = document.getElementById("spinning-truck");
+        var loadingText = document.getElementById("loader-text");
+
+        let currentFrame = 0;
+
+        const frameInterval = 250;
+
+        function updateAnimation() {
+            animatedImage.src = images[currentFrame];
+            currentFrame = (currentFrame + 1) % images.length;
+        }
+        setInterval(updateAnimation, frameInterval);
+
         // User login setting
         let userToken;
         let unityTokenReady = false;
@@ -126,25 +158,26 @@
                 }
             });
         }
+
         lateLogin();
 
-        // function unityShowBanner(msg, type) {
-        //     function updateBannerVisibility() {
-        //         warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
-        //     }
-        //     var div = document.createElement('div');
-        //     div.innerHTML = msg;
-        //     warningBanner.appendChild(div);
-        //     if (type == 'error') div.style = 'background: red; padding: 10px;';
-        //     else {
-        //         if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-        //         setTimeout(function () {
-        //             warningBanner.removeChild(div);
-        //             updateBannerVisibility();
-        //         }, 5000);
-        //     }
-        //     updateBannerVisibility();
-        // }
+        function unityShowBanner(msg, type) {
+            function updateBannerVisibility() {
+                warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+            }
+            var div = document.createElement('div');
+            div.innerHTML = msg;
+            warningBanner.appendChild(div);
+            if (type == 'error') div.style = 'background: red; padding: 10px;';
+            else {
+                if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+                setTimeout(function () {
+                    warningBanner.removeChild(div);
+                    updateBannerVisibility();
+                }, 5000);
+            }
+            updateBannerVisibility();
+        }
 
         var buildUrl = "Build";
         var loaderUrl = buildUrl + "/motchiBuild.loader.js";
@@ -162,41 +195,12 @@
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
             container.className = "unity-mobile";
             canvas.className = "unity-mobile";
+        } else {
+            canvas.style.width = "100%";
+            canvas.style.height = "100%";
         }
+
         var myGameInstance = null;
-
-        const images = [
-            "TemplateData/LoadingScreen/WALK_1.png",
-            "TemplateData/LoadingScreen/WALK_2.png",
-            "TemplateData/LoadingScreen/WALK_3.png",
-            "TemplateData/LoadingScreen/WALK_4A.png",
-            "TemplateData/LoadingScreen/WALK_1.png",
-            "TemplateData/LoadingScreen/WALK_2.png",
-            "TemplateData/LoadingScreen/WALK_3.png",
-            "TemplateData/LoadingScreen/WALK_4B.png",
-        ];
-
-        var backgroundImage = document.getElementById("characted-background");
-        var animatedImage = document.getElementById("characted-animation");
-        var container = document.querySelector("#unity-container");
-        var canvas = document.querySelector("#unity-canvas");
-        var loadingBar = document.querySelector("#unity-loading-bar");
-        var progressBarFull = document.querySelector("#unity-progress-bar-full");
-        var fullscreenButton = document.querySelector("#unity-fullscreen-button");
-        var warningBanner = document.querySelector("#unity-warning");
-        // var customOverlay = document.getElementById("custom-overlay");   
-        // var spinningTruck = document.getElementById("spinning-truck");
-        var loadingText = document.getElementById("loader-text");
-
-        let currentFrame = 0;
-
-        const frameInterval = 250;
-
-        function updateAnimation() {
-            animatedImage.src = images[currentFrame];
-            currentFrame = (currentFrame + 1) % images.length;
-        }
-        setInterval(updateAnimation, frameInterval);
     </script>
 </body>
 
