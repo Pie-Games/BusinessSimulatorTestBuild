@@ -62,7 +62,7 @@
             <div id="unity-build-title">motchi</div>
         </div>
     </div>
-    
+
     <img id="characted-background" src="TemplateData/LoadingScreen/CIRCLE_.png" alt="Spinning Truck Icon">
     <img id="characted-animation" src="TemplateData/LoadingScreen/WALK_1.png" alt="Spinning Truck Icon">
 
@@ -87,24 +87,21 @@
         var progressBarFull = document.querySelector("#unity-progress-bar-full");
         var fullscreenButton = document.querySelector("#unity-fullscreen-button");
         var warningBanner = document.querySelector("#unity-warning");
+        var loadingText = document.getElementById("loader-text");
         // var customOverlay = document.getElementById("custom-overlay");   
         // var spinningTruck = document.getElementById("spinning-truck");
-        var loadingText = document.getElementById("loader-text");
+        
+        // Set initial image
+        let currentIndex = 0;
+        animatedImage.style.backgroundImage = `url(${images[currentIndex]})`;
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            animatedImage.style.backgroundImage = `url(${images[currentIndex]})`;
+        }, 250);
 
-        let currentFrame = 0;
-
-        const frameInterval = 250;
-
-        function updateAnimation() {
-            animatedImage.src = images[currentFrame];
-            currentFrame = (currentFrame + 1) % images.length; // Loop back to 0 after the last image
-        }
-        setInterval(updateAnimation, frameInterval);
-
-        // User login setting
+        // Getting user token
         let userToken;
         let unityTokenReady = false;
-
         function lateLogin() {
             var app = app || {};
             var initData = window.Telegram.WebApp.initData;
