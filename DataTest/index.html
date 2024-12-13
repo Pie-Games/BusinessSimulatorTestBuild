@@ -197,25 +197,25 @@
 
         var myGameInstance = null;
 
-        // var script = document.createElement("script");
-        // script.src = loaderUrl;
-        // script.onload = () => {
-        //     createUnityInstance(canvas, config, (progress) => {
-        //         progressBarFull.style.width = 100 * progress + "%";
-        //     }).then((unityInstance) => {
-        //         myGameInstance = unityInstance;
+        var script = document.createElement("script");
+        script.src = loaderUrl;
+        script.onload = () => {
+            createUnityInstance(canvas, config, (progress) => {
+                progressBarFull.style.width = 100 * progress + "%";
+            }).then((unityInstance) => {
+                myGameInstance = unityInstance;
 
-        //         fullscreenButton.onclick = () => {
-        //             unityInstance.SetFullscreen(1);
-        //         };
-        //         loadingText.style.display = "none";
-        //         customOverlay.style.display = "flex";
+                fullscreenButton.onclick = () => {
+                    unityInstance.SetFullscreen(1);
+                };
+                loadingText.style.display = "none";
+                customOverlay.style.display = "flex";
 
-        //     }).catch((message) => {
-        //         alert(message);
-        //     });
-        // }
-        // document.body.appendChild(script);
+            }).catch((message) => {
+                alert(message);
+            });
+        }
+        document.body.appendChild(script);
     </script>
 </body>
 
