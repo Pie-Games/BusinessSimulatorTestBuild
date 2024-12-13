@@ -54,7 +54,7 @@
             background-color: black;
         }
 
-        #custom-overlay {
+        /* #custom-overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -68,16 +68,16 @@
             font-size: 2em;
             z-index: 9999;
             display: none;
-        }
+        } */
 
-        #spinning-truck {
+        #characted-animation {
             position: absolute;
             top: 33%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 150px;
             z-index: 10000;
-            animation: spin 2s linear infinite;
+            /* animation: spin 2s linear infinite; */
         }
 
         @keyframes spin {
@@ -147,12 +147,45 @@
         </div>
     </div>
 
-    <div id="custom-overlay">
+    <!-- <div id="custom-overlay">
         <!--<img id="truck-icon" src="TemplateData/TRUCK_Icon.png" alt="Truck Icon">-->
-    </div>
+    <!-- </div> --> -->
 
     <!-- Change character image each 1/12 second -->
-    <img id="spinning-truck" src="TemplateData/LoadingScreen/WALK_1.png" alt="Spinning Truck Icon">
+    <img id="characted-animation" src="TemplateData/LoadingScreen/WALK_1.png" alt="Spinning Truck Icon">
+    <script>
+        const images = [
+            "TemplateData/LoadingScreen/WALK_1.png",
+            "TemplateData/LoadingScreen/WALK_2.png",
+            "TemplateData/LoadingScreen/WALK_3.png",
+            "TemplateData/LoadingScreen/WALK_4A.png",
+            "TemplateData/LoadingScreen/WALK_1.png",
+            "TemplateData/LoadingScreen/WALK_2.png",
+            "TemplateData/LoadingScreen/WALK_3.png",
+            "TemplateData/LoadingScreen/WALK_4B.png",
+        ];
+
+        // Get the image element
+        const animatedImage = document.getElementById("characted-animation");
+            
+        // Current frame index
+        let currentFrame = 0;
+            
+        // Update interval (1/12 second = ~83 milliseconds)
+        const frameInterval = 1000 / 4;
+            
+        // Function to update the image
+        function updateAnimation() {
+            // Update the `src` to the next image
+            animatedImage.src = images[currentFrame];
+            
+            // Increment frame index
+            currentFrame = (currentFrame + 1) % images.length; // Loop back to 0 after the last image
+        }
+        
+        // Start the animation
+        setInterval(updateAnimation, frameInterval);
+    </script>
 
     <div id="loader-text">
         Loading Test Build 1.1.5🐌
@@ -223,7 +256,7 @@
         var progressBarFull = document.querySelector("#unity-progress-bar-full");
         var fullscreenButton = document.querySelector("#unity-fullscreen-button");
         var warningBanner = document.querySelector("#unity-warning");
-        var customOverlay = document.getElementById("custom-overlay");
+        // var customOverlay = document.getElementById("custom-overlay");
         var spinningTruck = document.getElementById("spinning-truck");
         var loadingText = document.getElementById("loader-text");
 
