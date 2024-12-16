@@ -205,7 +205,7 @@
             createUnityInstance(canvas, config, (progress) => {
             }).then((unityInstance) => {
                 myGameInstance = unityInstance;
-                oadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
+                loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
             }).catch((message) => {
                 alert(message);
             });
