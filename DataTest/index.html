@@ -199,15 +199,15 @@
             canvas.style.height = "100%";
         }
 
-        // var myGameInstance = null;
+        var myGameInstance = null;
         var unityInstance = null;
         var script = document.createElement("script");
         script.src = loaderUrl;
         script.onload = () => {
             createUnityInstance(canvas, config, (progress) => {
-            }).then((unityInstance) => {
-                // myGameInstance = unityInstance;
-                unityInstance = unityInstance;
+            }).then((instance) => {
+                myGameInstance = instance;
+                instance = instance;
 
                 // loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
                 // clearInterval(loadTextInterval);
