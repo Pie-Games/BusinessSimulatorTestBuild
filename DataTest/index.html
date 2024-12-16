@@ -127,7 +127,7 @@
             loadingTextSprites[loadingTextIndex].style.display = 'block';
             loadingTextIndex = (loadingTextIndex + 1) % loadingTextSprites.length;
         }
-        setInterval(updateLoadingTextSprites, 500);
+        var loadTextInterval = setInterval(updateLoadingTextSprites, 500);
 
         // Logging to backend
         let userToken;
@@ -206,7 +206,7 @@
             createUnityInstance(canvas, config, (progress) => {
             }).then((unityInstance) => {
                 myGameInstance = unityInstance;
-                loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
+                clearInterval(loadTextInterval);
             }).catch((message) => {
                 alert(message);
             });
