@@ -46,6 +46,7 @@
     </script>
 </head>
 
+<!-- Loading screen body -->
 <body>
     <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas" tabindex="-1"></canvas>
@@ -81,6 +82,7 @@
         var container = document.querySelector("#unity-container");
         var canvas = document.querySelector("#unity-canvas");
         var loadingHint = document.getElementById('load-text');
+        var customOverlay = document.getElementById("custom-overlay");
         var characterSprites = document.querySelectorAll('.character-sprite');
         var loadingTextSprites = document.querySelectorAll('.loading-text-sprite');
 
@@ -173,6 +175,7 @@
         }
         lateLogin();
 
+        // Starting build
         var buildUrl = "Build";
         var loaderUrl = buildUrl + "/motchiBuild.loader.js";
         var config = {
