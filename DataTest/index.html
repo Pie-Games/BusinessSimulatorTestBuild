@@ -203,7 +203,7 @@
             createUnityInstance(canvas, config, (progress) => {
             }).then((unityInstance) => {
                 myGameInstance = unityInstance;
-                customOverlay.style.display = "flex";
+                customOverlay.style.display = "block";
             }).catch((message) => {
                 alert(message);
             });
