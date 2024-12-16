@@ -22,6 +22,90 @@
         });
     </script>
 
+    <!-- CSS settings -->
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            color-scheme: only light;
+        }
+
+        #unity-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+        }
+
+        #unity-loading-bar {
+            background-color: black;
+        }
+
+        #custom-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            z-index: 9999;
+            display: none;
+        }
+
+        #spinning-truck {
+            position: absolute;
+            top: 33%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            z-index: 10000;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(-360deg);
+            }
+        }
+
+        #loader-text {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.2em;
+            text-align: center;
+            z-index: 10000;
+        }
+
+        #unity-logo {
+            display: none !important;
+        }
+    </style>
+
     <!-- Telegram init -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
@@ -66,14 +150,34 @@
     </div>
 
     <div id="custom-overlay">
-        <!--<img id="truck-icon" src="TemplateData/TRUCK_Icon.png" alt="Truck Icon">-->
     </div>
 
-    <img id="spinning-truck" src="TemplateData/LoadingScreen/CIRCLE_Money_.png" alt="Spinning Truck Icon">
+    <img id="characted-background" src="TemplateData/LoadingScreen/CIRCLE_.png">
+    <div id="character-container">
+        <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_1.png">
+        <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_2.png">
+        <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_3.png">
+        <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4A.png">
+        <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_1.png">
+        <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_2.png">
+        <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_3.png">
+        <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4B.png">
+    </div>
+    <div id="load-text">
+        Loading
+    </div>
+    <img class="spinning-load-sprite" src="TemplateData/LoadingScreen/CIRCLE_Money_.png">
+    <div id="loading-text-container">
+        <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_0.png">
+        <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_1.png">
+        <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_2.png">
+        <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_3.png">
+    </div>
+    <!-- <img id="spinning-truck" src="TemplateData/LoadingScreen/CIRCLE_Money_.png" alt="Spinning Truck Icon">
 
     <div id="loader-text">
         Loading🐌
-    </div>
+    </div> -->
 
     <!-- <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas" tabindex="-1"></canvas>
@@ -132,31 +236,31 @@
             "For every friend you invite, you will receive a reward and earn a percentage of their income"
         ];
 
-        // let textIndex = 0;
-        // function updateParagraph() {
-        //     const randomIndex = Math.floor(Math.random() * phrases.length);
-        //     loadingHint.textContent = phrases[randomIndex];
-        // }
-        // updateParagraph();
-        // setInterval(updateParagraph, 5000);
+        let textIndex = 0;
+        function updateParagraph() {
+            const randomIndex = Math.floor(Math.random() * phrases.length);
+            loadingHint.textContent = phrases[randomIndex];
+        }
+        updateParagraph();
+        setInterval(updateParagraph, 5000);
 
-        // // Animating character
-        // let charactedIndex = 0;
-        // function updateCharacterSprites() {
-        //     characterSprites.forEach((sprite) => (sprite.style.display = 'none'));
-        //     characterSprites[charactedIndex].style.display = 'block';
-        //     charactedIndex = (charactedIndex + 1) % characterSprites.length;
-        // }
-        // setInterval(updateCharacterSprites, 250);
+        // Animating character
+        let charactedIndex = 0;
+        function updateCharacterSprites() {
+            characterSprites.forEach((sprite) => (sprite.style.display = 'none'));
+            characterSprites[charactedIndex].style.display = 'block';
+            charactedIndex = (charactedIndex + 1) % characterSprites.length;
+        }
+        setInterval(updateCharacterSprites, 250);
 
-        // // Animating loading text
-        // let loadingTextIndex = 0;
-        // function updateLoadingTextSprites() {
-        //     loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
-        //     loadingTextSprites[loadingTextIndex].style.display = 'block';
-        //     loadingTextIndex = (loadingTextIndex + 1) % loadingTextSprites.length;
-        // }
-        // setInterval(updateLoadingTextSprites, 500);
+        // Animating loading text
+        let loadingTextIndex = 0;
+        function updateLoadingTextSprites() {
+            loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
+            loadingTextSprites[loadingTextIndex].style.display = 'block';
+            loadingTextIndex = (loadingTextIndex + 1) % loadingTextSprites.length;
+        }
+        setInterval(updateLoadingTextSprites, 500);
 
         // Logging to backend
         let userToken;
