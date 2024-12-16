@@ -199,6 +199,7 @@
         var characterSprites = document.querySelectorAll('.character-sprite');
         var loadingHint = document.getElementById('load-text');
         var loadingTextSprites = document.querySelectorAll('.loading-text-sprite');
+        var loadingText = document.getElementById("loader-text");
 
         // Animating text update
         const phrases = [
@@ -214,31 +215,31 @@
             "For every friend you invite, you will receive a reward and earn a percentage of their income"
         ];
 
-        let textIndex = 0;
-        function updateParagraph() {
-            const randomIndex = Math.floor(Math.random() * phrases.length);
-            loadingHint.textContent = phrases[randomIndex];
-        }
-        updateParagraph();
-        setInterval(updateParagraph, 5000);
+        // let textIndex = 0;
+        // function updateParagraph() {
+        //     const randomIndex = Math.floor(Math.random() * phrases.length);
+        //     loadingHint.textContent = phrases[randomIndex];
+        // }
+        // updateParagraph();
+        // setInterval(updateParagraph, 5000);
 
-        // Animating character
-        let charactedIndex = 0;
-        function updateCharacterSprites() {
-            characterSprites.forEach((sprite) => (sprite.style.display = 'none'));
-            characterSprites[charactedIndex].style.display = 'block';
-            charactedIndex = (charactedIndex + 1) % characterSprites.length;
-        }
-        setInterval(updateCharacterSprites, 250);
+        // // Animating character
+        // let charactedIndex = 0;
+        // function updateCharacterSprites() {
+        //     characterSprites.forEach((sprite) => (sprite.style.display = 'none'));
+        //     characterSprites[charactedIndex].style.display = 'block';
+        //     charactedIndex = (charactedIndex + 1) % characterSprites.length;
+        // }
+        // setInterval(updateCharacterSprites, 250);
 
-        // Animating loading text
-        let loadingTextIndex = 0;
-        function updateLoadingTextSprites() {
-            loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
-            loadingTextSprites[loadingTextIndex].style.display = 'block';
-            loadingTextIndex = (loadingTextIndex + 1) % loadingTextSprites.length;
-        }
-        setInterval(updateLoadingTextSprites, 500);
+        // // Animating loading text
+        // let loadingTextIndex = 0;
+        // function updateLoadingTextSprites() {
+        //     loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
+        //     loadingTextSprites[loadingTextIndex].style.display = 'block';
+        //     loadingTextIndex = (loadingTextIndex + 1) % loadingTextSprites.length;
+        // }
+        // setInterval(updateLoadingTextSprites, 500);
 
         // Logging to backend
         let userToken;
@@ -297,9 +298,10 @@
             frameworkUrl: buildUrl + "/motchiBuild.framework.js.unityweb",
             codeUrl: buildUrl + "/motchiBuild.wasm.unityweb",
             streamingAssetsUrl: "StreamingAssets",
-            companyName: "PieGames",
-            productName: "BizTycoon",
-            productVersion: "1.1",
+            companyName: "DefaultCompany",
+            productName: "motchi",
+            productVersion: "1.0",
+            showBanner: unityShowBanner,
         };
 
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -318,6 +320,7 @@
             }).then((unityInstance) => {
                 myGameInstance = unityInstance;
                 customOverlay.style.display = "flex";
+                loadingText.style.display = "none";
             }).catch((message) => {
                 alert(message);
             });
