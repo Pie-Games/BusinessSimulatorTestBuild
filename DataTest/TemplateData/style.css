@@ -109,13 +109,13 @@ html {
 #unity-container.unity-desktop {
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
 }
 
 #unity-container.unity-mobile {
     position: fixed;
     width: 100%;
-    height: 100%
+    height: 100%;
 }
 
 #unity-canvas {
@@ -124,7 +124,7 @@ html {
 
 .unity-mobile #unity-canvas {
     width: 100%;
-    height: 100%
+    height: 100%;
 }
 
 #unity-logo {
@@ -149,7 +149,7 @@ html {
 }
 
 #unity-footer {
-    display: none
+    display: none;
 }
 
 #unity-webgl-logo {
