@@ -48,7 +48,7 @@
 
 <!-- CSS settings -->
 <style>
-    body,
+    /* body,
     html {
         margin: 0;
         padding: 0;
@@ -92,38 +92,7 @@
         font-size: 2em;
         z-index: 9999;
         display: none;
-    }
-
-    #spinning-truck {
-        position: absolute;
-        top: 33%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 150px;
-        z-index: 10000;
-        animation: spin 2s linear infinite;
-    }
-
-    @keyframes spin {
-        from {
-            transform: translate(-50%, -50%) rotate(0deg);
-        }
-
-        to {
-            transform: translate(-50%, -50%) rotate(-360deg);
-        }
-    }
-
-    #loader-text {
-        position: absolute;
-        top: 60%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 1.2em;
-        text-align: center;
-        z-index: 10000;
-    }
+    } */
 
     #unity-logo {
         display: none !important;
@@ -131,7 +100,6 @@
 </style>
 
 <!-- Loading screen body -->
-
 <body>
     <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas" tabindex="-1"></canvas>
