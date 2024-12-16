@@ -66,6 +66,7 @@
                     Text
                 </div>
                 <img class="spinning-load-sprite" src="TemplateData/LoadingScreen/CIRCLE_Money_.png">
+                <div id="unity-warning"></div>
             </div>
         </div>
     </div>
@@ -156,10 +157,29 @@
                 }
             });
         }
-
         lateLogin();
 
         // Starting build
+        var warningBanner = document.querySelector("#unity-warning");
+        function unityShowBanner(msg, type) {
+            function updateBannerVisibility() {
+                warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+            }
+
+            var div = document.createElement('div');
+            div.innerHTML = msg;
+            warningBanner.appendChild(div);
+            if (type == 'error') div.style = 'background: red; padding: 10px;';
+            else {
+                if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+                setTimeout(function () {
+                    warningBanner.removeChild(div);
+                    updateBannerVisibility();
+                }, 5000);
+            }
+            updateBannerVisibility();
+        };
+
         var buildUrl = "Build";
         var loaderUrl = buildUrl + "/motchiBuild.loader.js";
         var config = {
@@ -170,6 +190,7 @@
             companyName: "PieGames",
             productName: "BizTycoon",
             productVersion: "1.0",
+            showBanner: unityShowBanner,
         };
 
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
