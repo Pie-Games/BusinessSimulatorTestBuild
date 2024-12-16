@@ -10,6 +10,7 @@ html {
 }
 
 #characted-background {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,13 +20,23 @@ html {
 }
 
 #character-container {
+    position: relative;
+    width: 150px; /* Ensure a fixed width */
+    height: 150px; /* Ensure a fixed height */
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 300px;
+    margin-bottom: 10px; /* Space below */
+    overflow: hidden; /* Prevent content overflow */
+  }
+
+  .character-sprite {
+    position: absolute; /* Ensures no movement */
+    width: 80%; /* Adjust size */
     height: auto;
-    margin-bottom: 10px;
-}
+    z-index: 2; /* Above the background */
+    animation: walk-animation 1s steps(4) infinite; /* Optional walking animation */
+  }
 
 .loading-text-sprite {
     width: 200px;
@@ -40,24 +51,18 @@ html {
     margin-top: 10px;
 }
 
-.character-sprite {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: auto;
-    margin: 0 5px;
-}
-
 .spinning-load-sprite {
     display: flex;
+    position: absolute;
     justify-content: center;
     align-items: center;
     width: 100px;
     height: auto;
     margin-bottom: 10px;
     animation: rotation 1s steps(12) infinite;
+    bottom: 50px;
 }
+
 
 @keyframes rotation {
     0% {
