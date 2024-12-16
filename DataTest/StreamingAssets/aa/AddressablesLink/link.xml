@@ -19,7 +19,6 @@
     <type fullname="StallManufacturerController" preserve="all" />
     <type fullname="StallManufacturerJuicerSpine" preserve="all" />
     <type fullname="StallManufacturerMillSpine" preserve="all" />
-    <type fullname="StallManufacturerPizzaSpine" preserve="all" />
     <type fullname="StallManufacturerView" preserve="all" />
     <type fullname="StallQueue" preserve="all" />
     <type fullname="StallStockController" preserve="all" />
@@ -61,7 +60,6 @@
   <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.GameObject" preserve="all" />
     <type fullname="UnityEngine.Material" preserve="all" />
-    <type fullname="UnityEngine.Mesh" preserve="all" />
     <type fullname="UnityEngine.MeshFilter" preserve="all" />
     <type fullname="UnityEngine.MeshRenderer" preserve="all" />
     <type fullname="UnityEngine.Object" preserve="all" />
