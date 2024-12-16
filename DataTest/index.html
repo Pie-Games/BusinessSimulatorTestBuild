@@ -51,36 +51,29 @@
 <body>
     <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas" tabindex="-1"></canvas>
-        <div id="unity-loading-bar">
+    </div>
 
-
-            <div id="custom-overlay">
-                <img id="characted-background" src="TemplateData/LoadingScreen/CIRCLE_.png">
-                <div id="character-container">
-                    <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_1.png">
-                    <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_2.png">
-                    <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_3.png">
-                    <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4A.png">
-                    <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_1.png">
-                    <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_2.png">
-                    <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_3.png">
-                    <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4B.png">
-                </div>
-                <div id="load-text">
-                    Loading
-                </div>
-                <img class="spinning-load-sprite" src="TemplateData/LoadingScreen/CIRCLE_Money_.png">
-                <div id="loading-text-container">
-                    <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_0.png">
-                    <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_1.png">
-                    <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_2.png">
-                    <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_3.png">
-                </div>
-            </div>
-            <div id="unity-logo"></div>
-            <div id="unity-progress-bar-empty">
-                <div id="unity-progress-bar-full"></div>
-            </div>
+    <div id="custom-overlay">
+        <img id="characted-background" src="TemplateData/LoadingScreen/CIRCLE_.png">
+        <div id="character-container">
+            <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_1.png">
+            <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_2.png">
+            <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_3.png">
+            <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4A.png">
+            <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_1.png">
+            <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_2.png">
+            <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_3.png">
+            <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4B.png">
+        </div>
+        <div id="load-text">
+            Loading
+        </div>
+        <img class="spinning-load-sprite" src="TemplateData/LoadingScreen/CIRCLE_Money_.png">
+        <div id="loading-text-container">
+            <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_0.png">
+            <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_1.png">
+            <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_2.png">
+            <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_3.png">
         </div>
     </div>
 
@@ -94,7 +87,7 @@
         var characterSprites = document.querySelectorAll('.character-sprite');
         var loadingHint = document.getElementById('load-text');
         var loadingTextSprites = document.querySelectorAll('.loading-text-sprite');
-
+        
         // Animating text update
         const phrases = [
             "Earning 10 000 bucks earns you 1 $BIZTY coin",
