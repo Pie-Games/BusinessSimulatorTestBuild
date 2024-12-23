@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | motchi</title>
+    <title>Biz Tycoon</title>
     <link rel="shortcut icon" href="TemplateData/sign.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
@@ -192,24 +192,6 @@
         lateLogin();
 
         // Starting build
-        function unityShowBanner(msg, type) {
-            function updateBannerVisibility() {
-                warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
-            }
-            var div = document.createElement('div');
-            div.innerHTML = msg;
-            warningBanner.appendChild(div);
-            if (type == 'error') div.style = 'background: red; padding: 10px;';
-            else {
-                if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-                setTimeout(function () {
-                    warningBanner.removeChild(div);
-                    updateBannerVisibility();
-                }, 5000);
-            }
-            updateBannerVisibility();
-        }
-
         var buildUrl = "Build";
         var loaderUrl = buildUrl + "/motchiBuild.loader.js";
         var config = {
@@ -220,7 +202,6 @@
             companyName: "DefaultCompany",
             productName: "motchi",
             productVersion: "1.1",
-            showBanner: unityShowBanner
         };
 
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -231,20 +212,18 @@
             canvas.style.height = "100%";
         }
 
+        var myGameInstance = null;
+        var unityInstance = null;
         var script = document.createElement("script");
         script.src = loaderUrl;
         script.onload = () => {
             createUnityInstance(canvas, config, (progress) => {
-                progressBarFull.style.width = 100 * progress + "%";
-            }).then((unityInstance) => {
-                myGameInstance = unityInstance;
+            }).then((instance) => {
+                myGameInstance = instance;
+                unityInstance = instance;
 
-                fullscreenButton.onclick = () => {
-                    unityInstance.SetFullscreen(1);
-                };
-                loadingText.style.display = "none";
-                customOverlay.style.display = "flex";
-
+                // loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
+                // clearInterval(loadTextInterval);
             }).catch((message) => {
                 alert(message);
             });
