@@ -47,6 +47,7 @@
 </head>
 
 <!-- Loading screen body -->
+
 <body>
     <div id="custom-overlay">
         <div id="character-container" style="margin-bottom: 50px;"></div>
@@ -101,7 +102,11 @@
         var characterSprites = document.querySelectorAll('.character-sprite');
         var loadingHint = document.getElementById('load-text');
         var loadingTextSprites = document.querySelectorAll('.loading-text-sprite');
-        
+
+        var progressBarFull = document.querySelector("#unity-progress-bar-full");
+        var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+        var warningBanner = document.querySelector("#unity-warning");
+
         // Animating text update
         const phrases = [
             "Earning 10 000 bucks earns you 1 $BIZTY coin",
