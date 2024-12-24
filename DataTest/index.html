@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Biz Tycoon</title>
+    <title>Unity WebGL Player | motchi</title>
     <link rel="shortcut icon" href="TemplateData/sign.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
@@ -49,7 +49,7 @@
 <!-- Loading screen body -->
 <body>
     <div id="custom-overlay">
-        <!-- <div id="character-container" style="margin-bottom: 50px;"></div>
+        <div id="character-container" style="margin-bottom: 50px;"></div>
         <div id="character-container">
             <img id="characted-background" src="TemplateData/LoadingScreen/CIRCLE_.png">
             <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_1.png">
@@ -60,19 +60,19 @@
             <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_2.png">
             <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_3.png">
             <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4B.png">
-        </div>-->
+        </div>
         <div id="load-text">
             Loading
         </div>
         <div id="character-container">
             <img class="spinning-load-sprite" src="TemplateData/LoadingScreen/CIRCLE_Money_.png">
         </div>
-        <!--<div id="character-container">
+        <div id="character-container">
             <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_0.png">
             <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_1.png">
             <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_2.png">
             <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_3.png">
-        </div> -->
+        </div>
     </div>
     <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas" tabindex="-1"></canvas>
@@ -89,45 +89,45 @@
         var loadingHint = document.getElementById('load-text');
         var loadingTextSprites = document.querySelectorAll('.loading-text-sprite');
         
-        // // Animating text update
-        // const phrases = [
-        //     "Earning 10 000 bucks earns you 1 $BIZTY coin",
-        //     "Improve objects and workers to increase your income",
-        //     "Don't forget to collect passive income daily",
-        //     "The more expensive the resources are, the more income you get",
-        //     "Workers can get tired, walk up to them to wake them up",
-        //     "Buildings break down from time to time, go over to fix them",
-        //     "Open new businesses to generate even more income",
-        //     "Tops in the leagues get rewards every day",
-        //     "Businesses continue to generate passive income while you're in the game",
-        //     "For every friend you invite, you will receive a reward and earn a percentage of their income"
-        // ];
+        // Animating text update
+        const phrases = [
+            "Earning 10 000 bucks earns you 1 $BIZTY coin",
+            "Improve objects and workers to increase your income",
+            "Don't forget to collect passive income daily",
+            "The more expensive the resources are, the more income you get",
+            "Workers can get tired, walk up to them to wake them up",
+            "Buildings break down from time to time, go over to fix them",
+            "Open new businesses to generate even more income",
+            "Tops in the leagues get rewards every day",
+            "Businesses continue to generate passive income while you're in the game",
+            "For every friend you invite, you will receive a reward and earn a percentage of their income"
+        ];
 
-        // let textIndex = 0;
-        // function updateParagraph() {
-        //     const randomIndex = Math.floor(Math.random() * phrases.length);
-        //     loadingHint.textContent = phrases[randomIndex];
-        // }
-        // updateParagraph();
-        // setInterval(updateParagraph, 10000);
+        let textIndex = 0;
+        function updateParagraph() {
+            const randomIndex = Math.floor(Math.random() * phrases.length);
+            loadingHint.textContent = phrases[randomIndex];
+        }
+        updateParagraph();
+        setInterval(updateParagraph, 10000);
 
-        // // Animating character
-        // let charactedIndex = 0;
-        // function updateCharacterSprites() {
-        //     characterSprites.forEach((sprite) => (sprite.style.display = 'none'));
-        //     characterSprites[charactedIndex].style.display = 'block';
-        //     charactedIndex = (charactedIndex + 1) % characterSprites.length;
-        // }
-        // setInterval(updateCharacterSprites, 250);
+        // Animating character
+        let charactedIndex = 0;
+        function updateCharacterSprites() {
+            characterSprites.forEach((sprite) => (sprite.style.display = 'none'));
+            characterSprites[charactedIndex].style.display = 'block';
+            charactedIndex = (charactedIndex + 1) % characterSprites.length;
+        }
+        setInterval(updateCharacterSprites, 250);
 
-        // // Animating loading text
-        // let loadingTextIndex = 0;
-        // function updateLoadingTextSprites() {
-        //     loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
-        //     loadingTextSprites[loadingTextIndex].style.display = 'block';
-        //     loadingTextIndex = (loadingTextIndex + 1) % loadingTextSprites.length;
-        // }
-        // var loadTextInterval = setInterval(updateLoadingTextSprites, 500);
+        // Animating loading text
+        let loadingTextIndex = 0;
+        function updateLoadingTextSprites() {
+            loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
+            loadingTextSprites[loadingTextIndex].style.display = 'block';
+            loadingTextIndex = (loadingTextIndex + 1) % loadingTextSprites.length;
+        }
+        var loadTextInterval = setInterval(updateLoadingTextSprites, 500);
 
         // Logging to backend
         let userToken;
@@ -188,7 +188,7 @@
             streamingAssetsUrl: "StreamingAssets",
             companyName: "DefaultCompany",
             productName: "motchi",
-            productVersion: "1.1",
+            productVersion: "1.0",
         };
 
         if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
