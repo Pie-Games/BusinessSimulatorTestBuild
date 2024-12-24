@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="TemplateData/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
 
+    <!-- Caching mechanish-->
+    <!-- <script src="Build/UnityLoader.js?v=2.0.0"></script> -->
+
     <!-- Ads initialization -->
     <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
     <script>
@@ -18,8 +21,6 @@
             debugBannerType: "RewardedVideo"
         });
     </script>
-
-    <!-- CSS settings -->
     <style>
         body,
         html {
@@ -67,6 +68,7 @@
             display: none;
         }
 
+        /* Spinning animation for truck PNG */
         #spinning-truck {
             position: absolute;
             top: 33%;
@@ -87,6 +89,7 @@
             }
         }
 
+        /* Loader text */
         #loader-text {
             position: absolute;
             top: 60%;
@@ -102,11 +105,12 @@
             display: none !important;
         }
     </style>
-
+    
     <!-- Telegram init -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         window.Telegram.WebApp.expand();
+
         function expandMiniApp() {
             console.log("Expanding Mini App...");
             if (window.TelegramWebviewProxy) {
@@ -121,8 +125,55 @@
             }
         }
 
+        // function lateLogin() {
+        //     var app = app || {};
+
+        //     // Define the function to post an authentication request
+        //     app.postAuthRequest = function (authData, callback) {
+        //         const initData = window.Telegram.WebApp.initData;
+        //         const initDataObj = {
+        //             init_data: initData
+        //         };
+        //         const initDataJson = JSON.stringify(initDataObj);
+        //         const url = "https://plankton-app-vzfoe.ondigitalocean.app/api/login";
+
+        //         console.log("Init data json: ", initDataJson);
+
+        //         fetch(url, {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             },
+        //             body: initDataJson
+        //         })
+        //             .then(response => {
+        //                 if (!response.ok) {
+        //                     throw new Error(`HTTP error! status: ${response.status}`);
+        //                 }
+        //                 return response.json(); // Assuming the response is JSON
+        //             })
+        //             .then(data => {
+        //                 console.log("Authentication response:", data);
+        //                 if (callback) callback(null, data);
+        //             })
+        //             .catch(error => {
+        //                 console.error("Error during authentication request:", error);
+        //                 if (callback) callback(error, null);
+        //             });
+        //     };
+        //     console.log("Posting: ", initDataJson);
+        //     app.postAuthRequest(function (error, response) {
+        //         if (error) {
+        //             console.error("Error callback:", error);
+        //         } else {
+        //             console.log("Success callback:", response);
+        //         }
+        //     });
+        // }
+
         window.addEventListener('load', function () {
             setTimeout(expandMiniApp, 10);
+            // setTimeout(lateLogin, 1000);
         });
     </script>
 </head>
@@ -143,76 +194,11 @@
             <div id="unity-build-title">motchi</div>
         </div>
     </div>
-
-    <div id="custom-overlay">
-        <!--<img id="truck-icon" src="TemplateData/TRUCK_Icon.png" alt="Truck Icon">-->
-    </div>
-
     <img id="spinning-truck" src="TemplateData/TRUCK_Icon.png" alt="Spinning Truck Icon">
-
     <div id="loader-text">
-        Loading Test Build 1.1.3🐌
+        Loading Test Build🐌
     </div>
-
     <script>
-        let userToken;
-        let unityTokenReady = false;
-
-        function lateLogin() {
-            var app = app || {};
-            var initData = window.Telegram.WebApp.initData;
-            // console.log("--------------------------");
-            // console.log("Init data:", initData);
-            // console.log("--------------------------");
-
-            var initDataObj = { init_data: initData };
-            var initDataJson = JSON.stringify(initDataObj);
-            
-            // console.log("--------------------------");
-            // console.log("Init data json: ", initDataJson);
-            // console.log("--------------------------");
-
-            if (initDataJson === undefined) {
-                console.log("Init data json is undefined");
-            }
-
-            app.postAuthRequest = function (authData, callback) {
-                const url = "https://plankton-app-vzfoe.ondigitalocean.app/api/login";
-                fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: initDataJson
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        userToken = data.token;
-                        unityTokenReady = true;
-                        if (callback) callback(null, data);
-                    })
-                    .catch(error => {
-                        console.error("Error during authentication request:", error);
-                        if (callback) callback(error, null);
-                    });
-            };
-            
-            // console.log("Posting: ", initDataJson);
-            app.postAuthRequest(function (error, response) {
-                if (error) {
-                    console.error("Error callback:", error);
-                } else {
-                    console.log("Success callback:", response);
-                }
-            });
-        }
-
-        lateLogin();
         var container = document.querySelector("#unity-container");
         var canvas = document.querySelector("#unity-canvas");
         var loadingBar = document.querySelector("#unity-loading-bar");
@@ -269,6 +255,8 @@
         var script = document.createElement("script");
         script.src = loaderUrl;
         script.onload = () => {
+
+
             createUnityInstance(canvas, config, (progress) => {
                 progressBarFull.style.width = 100 * progress + "%";
             }).then((unityInstance) => {
@@ -279,7 +267,6 @@
                 };
                 loadingText.style.display = "none";
                 customOverlay.style.display = "flex";
-
             }).catch((message) => {
                 alert(message);
             });
