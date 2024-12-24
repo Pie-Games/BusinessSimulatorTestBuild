@@ -27,9 +27,9 @@ jobs:
       #   run: |
       #     find ./DataTest/Build/ -type f \( -name "*.unityweb" -or -name "*.js" \) -exec brotli --quality=1 {} \;
 
-      - name: Compress Unity Build Files for .bundle
-        run: |
-          find ./DataTest/StreamingAssets/aa/WebGL/ -type f -name "*.bundle" -exec brotli --quality=1 {} \;          
+      # - name: Compress Unity Build Files for .bundle
+      #   run: |
+      #     find ./DataTest/StreamingAssets/aa/WebGL/ -type f -name "*.bundle" -exec brotli --quality=1 {} \;          
 
       - name: Deploy files to server
         run: |
