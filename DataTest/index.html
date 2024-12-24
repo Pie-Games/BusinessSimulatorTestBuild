@@ -49,8 +49,8 @@
 <!-- Loading screen body -->
 <body>
     <div id="custom-overlay">
-        <div id="character-container" style="margin-bottom: 50px;"></div>
-        <div id="character-container">
+        <!-- <div id="character-container" style="margin-bottom: 50px;"></div> -->
+        <!-- <div id="character-container">
             <img id="characted-background" src="TemplateData/LoadingScreen/CIRCLE_.png">
             <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_1.png">
             <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_2.png">
@@ -60,19 +60,19 @@
             <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_2.png">
             <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_3.png">
             <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4B.png">
-        </div>
+        </div> -->
         <div id="load-text">
             Loading
         </div>
         <div id="character-container">
             <img class="spinning-load-sprite" src="TemplateData/LoadingScreen/CIRCLE_Money_.png">
         </div>
-        <div id="character-container">
+        <!-- <div id="character-container">
             <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_0.png">
             <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_1.png">
             <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_2.png">
             <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_3.png">
-        </div>
+        </div> -->
     </div>
     <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas" tabindex="-1"></canvas>
@@ -112,22 +112,22 @@
         setInterval(updateParagraph, 10000);
 
         // Animating character
-        let charactedIndex = 0;
-        function updateCharacterSprites() {
-            characterSprites.forEach((sprite) => (sprite.style.display = 'none'));
-            characterSprites[charactedIndex].style.display = 'block';
-            charactedIndex = (charactedIndex + 1) % characterSprites.length;
-        }
-        setInterval(updateCharacterSprites, 250);
+        // let charactedIndex = 0;
+        // function updateCharacterSprites() {
+        //     characterSprites.forEach((sprite) => (sprite.style.display = 'none'));
+        //     characterSprites[charactedIndex].style.display = 'block';
+        //     charactedIndex = (charactedIndex + 1) % characterSprites.length;
+        // }
+        // setInterval(updateCharacterSprites, 250);
 
-        // Animating loading text
-        let loadingTextIndex = 0;
-        function updateLoadingTextSprites() {
-            loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
-            loadingTextSprites[loadingTextIndex].style.display = 'block';
-            loadingTextIndex = (loadingTextIndex + 1) % loadingTextSprites.length;
-        }
-        var loadTextInterval = setInterval(updateLoadingTextSprites, 500);
+        // // Animating loading text
+        // let loadingTextIndex = 0;
+        // function updateLoadingTextSprites() {
+        //     loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
+        //     loadingTextSprites[loadingTextIndex].style.display = 'block';
+        //     loadingTextIndex = (loadingTextIndex + 1) % loadingTextSprites.length;
+        // }
+        // var loadTextInterval = setInterval(updateLoadingTextSprites, 500);
 
         // Logging to backend
         let userToken;
