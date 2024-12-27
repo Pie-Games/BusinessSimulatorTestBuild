@@ -47,6 +47,7 @@
 </head>
 
 <!-- Loading screen body -->
+
 <body>
     <div id="custom-overlay">
         <div id="character-container" style="margin-bottom: 50px;"></div>
@@ -88,7 +89,7 @@
         var characterSprites = document.querySelectorAll('.character-sprite');
         var loadingHint = document.getElementById('load-text');
         var loadingTextSprites = document.querySelectorAll('.loading-text-sprite');
-        
+
         // Animating text update
         const phrases = [
             "Earning 10 000 bucks earns you 1 $BIZTY coin",
@@ -216,6 +217,26 @@
             });
         }
         document.body.appendChild(script);
+
+        // Preventing UI to change on keyboard open
+        var lastViewportHeight = window.innerHeight;
+        function detectKeyboardState() {
+            window.addEventListener('resize', () => {
+                const newViewportHeight = window.innerHeight;
+                const isKeyboardOpen = lastViewportHeight > newViewportHeight; // Keyboard opened
+                const isKeyboardClosed = lastViewportHeight < newViewportHeight; // Keyboard closed
+
+                if (isKeyboardClosed) {
+                    if (UnityLoader) {
+                        UnityLoader.UnityInstance.SendMessage("PromoWindow", "OnKeyboardClosed");
+                    }
+                }
+
+                lastViewportHeight = newViewportHeight;
+            });
+        }
+
+        detectKeyboardState();
     </script>
 </body>
 
