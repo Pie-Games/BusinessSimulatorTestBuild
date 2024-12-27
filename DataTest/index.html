@@ -217,26 +217,6 @@
             });
         }
         document.body.appendChild(script);
-
-        // Preventing UI to change on keyboard open
-        var lastViewportHeight = window.innerHeight;
-        function detectKeyboardState() {
-            window.addEventListener('resize', () => {
-                const newViewportHeight = window.innerHeight;
-                const isKeyboardOpen = lastViewportHeight > newViewportHeight; // Keyboard opened
-                const isKeyboardClosed = lastViewportHeight < newViewportHeight; // Keyboard closed
-
-                if (isKeyboardClosed) {
-                    if (UnityLoader) {
-                        UnityLoader.UnityInstance.SendMessage("PromoWindow", "OnKeyboardClosed");
-                    }
-                }
-
-                lastViewportHeight = newViewportHeight;
-            });
-        }
-
-        detectKeyboardState();
     </script>
 </body>
 
