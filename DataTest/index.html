@@ -41,6 +41,30 @@
             }
         }
 
+        document.addEventListener('focusin', (event) => {
+            const input = event.target;
+
+            if (input.tagName === 'INPUT' || input.tagName === 'TEXTAREA') {
+                // Adjust position and make the input visible
+                input.style.transform = 'translate(100px, 100px)'; // Adjust position as needed
+                input.style.opacity = '1'; // Make input visible
+                input.style.pointerEvents = 'auto'; // Enable interaction
+                input.style.width = '300px'; // Adjust width based on your design
+                input.style.height = '40px'; // Adjust height based on your design
+            }
+        });
+
+        document.addEventListener('focusout', (event) => {
+            const input = event.target;
+
+            if (input.tagName === 'INPUT' || input.tagName === 'TEXTAREA') {
+                // Hide the input field after focus is lost
+                input.style.transform = 'translate(-9999px, -9999px)'; // Move it off-screen
+                input.style.opacity = '0'; // Hide the input
+                input.style.pointerEvents = 'none'; // Disable interaction
+            }
+        });
+
         window.addEventListener('load', function () {
             setTimeout(expandMiniApp, 10);
         });
