@@ -7,7 +7,6 @@
     <title>Unity WebGL Player | motchi</title>
     <link rel="shortcut icon" href="TemplateData/sign.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes, maximum-scale=1, user-scalable=no">
 
@@ -219,6 +218,13 @@
             });
         }
         document.body.appendChild(script);
+
+        // Preventing 
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent the default "OK" behavior
+            }
+        });
     </script>
 </body>
 
