@@ -11,17 +11,6 @@ html {
     overscroll-behavior: none;
 }
 
-/* input {
-    background-color: transparent;
-    color: transparent;
-    cursor: not-allowed;
-    position: relative;
-    display: inline-block;
-    width: 0px;
-    height: 0px;
-    box-sizing: border-box;
-} */
-
 @supports (-webkit-touch-callout: none) {
 
     input[type="text"],
@@ -35,6 +24,17 @@ html {
         opacity: 0;
         width: 0px;
         height: 0px;
+    }
+
+    input {
+        background-color: transparent;
+        color: transparent;
+        cursor: not-allowed;
+        position: relative;
+        display: inline-block;
+        width: 0px;
+        height: 0px;
+        box-sizing: border-box;
     }
 }
 
