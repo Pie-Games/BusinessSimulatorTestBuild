@@ -12,17 +12,14 @@ html {
 }
 
 input {
-    background-color: transparent; /* Transparent background */
-    color: transparent; /* Transparent text */
-    cursor: not-allowed; /* Show a "not-allowed" cursor */
-    position: relative; /* Ensure it doesn't affect other elements */
-    display: inline-block; /* Maintain layout */
-    width: 100px; /* Set fixed width to prevent resizing */
-    height: 30px; /* Set fixed height */
-    border: 1px solid #ccc; /* Add a border for visual consistency */
-    margin: 0; /* Prevent extra spacing */
-    padding: 5px; /* Keep padding consistent */
-    box-sizing: border-box; /* Ensure padding doesn't affect dimensions */
+    background-color: transparent;
+    color: transparent;
+    cursor: not-allowed;
+    position: relative;
+    display: inline-block;
+    width: 0px;
+    height: 0px;
+    box-sizing: border-box;
 }
 
 #characted-background {
