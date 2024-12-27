@@ -11,12 +11,12 @@ html {
     overscroll-behavior: none;
 }
 
-input {
+/* input {
     background-color: #ffffff00;
     color: #ffffff00;
     cursor: not-allowed;
     display:  none;
-}
+} */
 
 #characted-background {
     display: flex;
