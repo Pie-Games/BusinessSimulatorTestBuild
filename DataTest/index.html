@@ -26,22 +26,6 @@
     <!-- Telegram init -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-        document.addEventListener('focusin', (event) => {
-            const input = event.target;
-
-            if (input.tagName === 'INPUT' || input.tagName === 'TEXTAREA') {
-                // input.style.display = flex;
-            }
-        });
-
-        document.addEventListener('focusout', (event) => {
-            const input = event.target;
-
-            if (input.tagName === 'INPUT' || input.tagName === 'TEXTAREA') {
-                // input.style.display = none;
-            }
-        });
-
         window.Telegram.WebApp.expand();
         function expandMiniApp() {
             console.log("Expanding Mini App...");

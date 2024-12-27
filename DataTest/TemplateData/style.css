@@ -30,8 +30,8 @@ input[type="text"], textarea {
     z-index: 1000; /* Keep it above the canvas if visible */
     pointer-events: auto; /* Allow user interaction */
     opacity: 0; /* Make it invisible but still functional */
-    width: 1px; /* Minimal size when not focused */
-    height: 1px;
+    width: 0px; /* Minimal size when not focused */
+    height: 0px;
 }
 
 #characted-background {
