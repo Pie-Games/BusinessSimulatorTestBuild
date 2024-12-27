@@ -204,8 +204,3 @@ html {
     padding: 10px;
     display: none;
 }
-
-input[type="text"], textarea {
-    touch-action: none; /* Prevent default touch behavior */
-    pointer-events: none; /* Disable interactions unless explicitly enabled */
-}
