@@ -23,21 +23,24 @@ html {
 } */
 
 input[type="text"], textarea {
+    pointer-events: auto;
     position: absolute !important;
-    z-index: 1000; /* Ensure it stays above other UI elements */
-    pointer-events: none; /* Prevent interaction unless it's focused */
-    opacity: 0; /* Make it invisible */
-    width: 100px; /* Minimal width when not focused */
-    height: 30px; /* Minimal height when not focused */
-    transform: translate(-9999px, -9999px); /* Off-screen position when not focused */
+    top: 0;
+    left: 0;
+    transform: translate(-9999px, -9999px);
+    z-index: 1000;
+    opacity: 0;
+    width: 0px;
+    height: 0px;
 }
 
 input[type="text"]:focus, textarea:focus {
-    pointer-events: auto; /* Allow interaction when focused */
-    opacity: 1; /* Make it visible */
-    transform: translate(0, 0); /* Position it normally */
-    width: 300px; /* Adjust width as needed */
-    height: 40px; /* Adjust height as needed */
+    pointer-events: auto;
+    position: absolute !important;
+    opacity: 1;
+    transform: translate(0, 0);
+    width: 300px;
+    height: 40px;
 }
 
 #characted-background {
