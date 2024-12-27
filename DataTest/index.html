@@ -26,6 +26,28 @@
     <!-- Telegram init -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
+        document.addEventListener('focusin', (event) => {
+            const input = event.target;
+
+            if (input.tagName === 'INPUT' || input.tagName === 'TEXTAREA') {
+                // Move the input field over the canvas area or a specific position
+                input.style.transform = 'translate(100px, 100px)'; // Adjust as needed
+                input.style.opacity = '1'; // Make it visible
+                input.style.width = '300px'; // Set appropriate width
+                input.style.height = '40px'; // Set appropriate height
+            }
+        });
+
+        document.addEventListener('focusout', (event) => {
+            const input = event.target;
+
+            if (input.tagName === 'INPUT' || input.tagName === 'TEXTAREA') {
+                // Hide the input field when it loses focus
+                input.style.transform = 'translate(-9999px, -9999px)';
+                input.style.opacity = '0';
+            }
+        });
+
         window.Telegram.WebApp.expand();
         function expandMiniApp() {
             console.log("Expanding Mini App...");
