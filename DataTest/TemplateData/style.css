@@ -22,17 +22,21 @@ html {
     box-sizing: border-box;
 } */
 
-/* input[type="text"], textarea {
-    position: absolute !important;
-    top: 0;
-    left: 0;
-    transform: translate(0px, 0px);
-    z-index: 1000;
-    pointer-events: auto;
-    opacity: 0;
-    width: 0px;
-    height: 0px;
-} */
+@supports (-webkit-touch-callout: none) {
+
+    input[type="text"],
+    textarea {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        transform: translate(0px, 0px);
+        z-index: 1000;
+        pointer-events: auto;
+        opacity: 0;
+        width: 0px;
+        height: 0px;
+    }
+}
 
 #characted-background {
     display: flex;
@@ -48,15 +52,15 @@ html {
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-  }
+}
 
-  .character-sprite {
+.character-sprite {
     position: absolute;
     width: 40%;
     height: auto;
     z-index: 2;
     animation: walk-animation 1s steps(4) infinite;
-  }
+}
 
 .loading-text-sprite {
     width: 200px;
