@@ -8,6 +8,7 @@ html {
     position: fixed;
     background-color: #000;
     font-family: 'RifficFreeBold', sans-serif;
+    overscroll-behavior: none;
 }
 
 #characted-background {
@@ -202,4 +203,9 @@ html {
     background: white;
     padding: 10px;
     display: none;
+}
+
+input[type="text"], textarea {
+    touch-action: none; /* Prevent default touch behavior */
+    pointer-events: none; /* Disable interactions unless explicitly enabled */
 }
