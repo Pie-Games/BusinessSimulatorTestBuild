@@ -22,7 +22,7 @@ html {
     box-sizing: border-box;
 } */
 
-input[type="text"], textarea {
+/* input[type="text"], textarea {
     position: absolute !important;
     top: 0;
     left: 0;
@@ -32,7 +32,7 @@ input[type="text"], textarea {
     opacity: 0;
     width: 0px;
     height: 0px;
-}
+} */
 
 #characted-background {
     display: flex;
