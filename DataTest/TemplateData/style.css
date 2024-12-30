@@ -26,16 +26,20 @@ html {
     }
 } */
 
-input[type="text"], textarea {
-    position: absolute !important; /* Ensure the input is absolutely positioned */
-    top: 0; /* Position it appropriately relative to the viewport */
-    left: 0;
-    transform: translate(-9999px, -9999px); /* Move it off-screen initially */
-    z-index: 1000; /* Keep it above the canvas if visible */
-    pointer-events: auto; /* Allow user interaction */
-    opacity: 0; /* Make it invisible but still functional */
-    width: 1px; /* Minimal size when not focused */
-    height: 1px;
+@supports (-webkit-touch-callout: none) {
+
+    input[type="text"],
+    textarea {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        transform: translate(-9999px, -9999px);
+        z-index: 1000;
+        pointer-events: auto;
+        opacity: 0;
+        width: 1px;
+        height: 1px;
+    }
 }
 
 /* input[type="text"], textarea {
