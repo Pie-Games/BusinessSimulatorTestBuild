@@ -27,6 +27,18 @@ html {
 } */
 
 input[type="text"], textarea {
+    position: absolute !important; /* Ensure the input is absolutely positioned */
+    top: 0; /* Position it appropriately relative to the viewport */
+    left: 0;
+    transform: translate(-9999px, -9999px); /* Move it off-screen initially */
+    z-index: 1000; /* Keep it above the canvas if visible */
+    pointer-events: auto; /* Allow user interaction */
+    opacity: 0; /* Make it invisible but still functional */
+    width: 1px; /* Minimal size when not focused */
+    height: 1px;
+}
+
+/* input[type="text"], textarea {
     pointer-events: auto;
     position: absolute !important;
     top: 0;
@@ -45,7 +57,7 @@ input[type="text"]:focus, textarea:focus {
     transform: translate(0, 0);
     width: 300px;
     height: 40px;
-}
+} */
 
 #characted-background {
     display: flex;
