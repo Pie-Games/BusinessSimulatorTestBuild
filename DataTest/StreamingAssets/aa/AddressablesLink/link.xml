@@ -1,5 +1,9 @@
 <linker>
   <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="ATMController" preserve="all" />
+    <type fullname="ATMView" preserve="all" />
+    <type fullname="FountainController" preserve="all" />
+    <type fullname="FountainView" preserve="all" />
     <type fullname="HarvestingPatchController" preserve="all" />
     <type fullname="HarvestingPatchView" preserve="all" />
     <type fullname="LocationExtensionController" preserve="all" />
