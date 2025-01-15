@@ -24,7 +24,7 @@
     </script>
 
     <!-- Ton initialization -->
-    <script src="https://cdn.ton.org/wallet.js"></script>
+    <!-- <script src="https://cdn.ton.org/wallet.js"></script> -->
     <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
 
     <!-- Telegram init -->
@@ -70,6 +70,7 @@
             <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_3.png">
             <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4B.png">
         </div>
+        <div id="ton-connect"></div>
         <div id="load-text">
             Loading
         </div>
@@ -84,36 +85,20 @@
         </div>
     </div>
 
-    <!-- TON Wallet interaction -->
-    <script>
-        async function connectWallet() {
-            const wallet = new TonWallet();
-            await wallet.connect();
-            console.log("Кошелёк подключён:", wallet);
-        }
-
-        async function sendTransaction(amount, recipient) {
-            const wallet = new TonWallet();
-            await wallet.sendTransaction({
-                amount: amount,  // Сумма TON
-                to: recipient    // Адрес получателя
-            });
-            console.log("Транзакция отправлена");
-        }
-    </script>
     <script>
         const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
             manifestUrl: 'https://biztycoongame.xyz/tonconnect-manifest.json',
             buttonRootId: 'ton-connect'
         });
     </script>
+
     <script>
         async function connectToWallet() {
             const connectedWallet = await tonConnectUI.connectWallet();
             // Do something with connectedWallet if needed
             console.log(connectedWallet);
         }
-    
+
         // Call the function
         connectToWallet().catch(error => {
             console.error("Error connecting to wallet:", error);
