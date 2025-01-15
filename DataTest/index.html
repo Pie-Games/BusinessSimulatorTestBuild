@@ -85,6 +85,22 @@
 
     <!-- TON Wallet interaction -->
     <script>
+        async function connectWallet() {
+            const wallet = new TonWallet();
+            await wallet.connect();
+            console.log("Кошелёк подключён:", wallet);
+        }
+
+        async function sendTransaction(amount, recipient) {
+            const wallet = new TonWallet();
+            await wallet.sendTransaction({
+                amount: amount,  // Сумма TON
+                to: recipient    // Адрес получателя
+            });
+            console.log("Транзакция отправлена");
+        }
+    </script>
+    <script>
         const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
             manifestUrl: 'https://biztycoongame.xyz/tonconnect-manifest.json',
             buttonRootId: 'ton-connect'
