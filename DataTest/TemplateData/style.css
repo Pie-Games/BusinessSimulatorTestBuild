@@ -11,6 +11,10 @@ html {
     overscroll-behavior: none;
 }
 
+ton-connect {
+    display: none !important;
+}
+
 @supports (-webkit-touch-callout: none) {
 
     input[type="text"],
