@@ -11,6 +11,7 @@ html {
     overscroll-behavior: none;
 }
 
+/* Make it invisible after  */
 ton-connect {
     display: none !important;
 }
