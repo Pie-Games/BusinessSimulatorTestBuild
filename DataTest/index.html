@@ -35,6 +35,7 @@
             console.log("Expanding Mini App...");
             if (window.TelegramWebviewProxy) {
                 window.TelegramWebviewProxy.postEvent('web_app_expand', JSON.stringify({}));
+                window.TelegramWebviewProxy.postEvent('web_app_request_fullscreen', JSON.stringify({}));
                 window.Telegram.WebApp.expand();
             } else if (window.parent) {
                 const data = JSON.stringify({
