@@ -1,0 +1,36 @@
+name: Deploy Unity Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Add server to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          cp .github/known_hosts ~/.ssh/known_hosts
+          
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
+      # - name: Compress Unity Build Files
+      #   run: |
+      #     find ./DataTest/Build/ -type f \( -name "*.unityweb" -or -name "*.js" \) -exec brotli --quality=1 {} \;
+
+      # - name: Compress Unity Build Files for .bundle
+      #   run: |
+      #     find ./DataTest/StreamingAssets/aa/WebGL/ -type f -name "*.bundle" -exec brotli --quality=1 {} \;          
+
+      - name: Deploy files to server
+        run: |
+          rsync -avz --delete ./DataTest/ root@165.22.81.244:/var/www/biztycoongametest
