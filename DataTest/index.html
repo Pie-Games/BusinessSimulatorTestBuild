@@ -27,6 +27,30 @@
     <!-- <script src="https://cdn.ton.org/wallet.js"></script> -->
     <!-- <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script> -->
 
+    <!-- Analytics initialization -->
+    <!-- <script async src="https://tganalytics.xyz/index.js" type="text/javascript"></script>
+    <script async>
+        telegramAnalytics.init({
+            token: 'eyJhcHBfbmFtZSI6IkJpelR5Y29vbiIsImFwcF91cmwiOiJodHRwcy8vdC5tZS9iaXp0eWNvb25fYm90IiwiYXBwX2RvbWFpbiI6Imh0dHBzOi8vYml6dHljb29uZ2FtZS5jb20vIn0=!fQGzXhnIbt6QG8Zgh4xgORjCUO2+qcWCiSbinwo+4Vg=',
+            appName: 'BizTycoon',
+        });
+    </script> -->
+
+    <script>
+        const analyticsScript = document.createElement('script');
+        analyticsScript.src = "https://tganalytics.xyz/index.js";
+        analyticsScript.async = true;
+
+        analyticsScript.onload = () => {
+            telegramAnalytics.init({
+                token: 'eyJhcHBfbmFtZSI6IkJpelR5Y29vbiIsImFwcF91cmwiOiJodHRwcy8vdC5tZS9iaXp0eWNvb25fYm90IiwiYXBwX2RvbWFpbiI6Imh0dHBzOi8vYml6dHljb29uZ2FtZS5jb20vIn0=!fQGzXhnIbt6QG8Zgh4xgORjCUO2+qcWCiSbinwo+4Vg=',
+                appName: 'BizTycoon',
+            });
+        };
+
+        document.head.appendChild(analyticsScript);
+    </script>
+
     <!-- Telegram init -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
@@ -246,7 +270,7 @@
         }
         document.body.appendChild(script);
 
-        
+
         // const fullscreenData = JSON.stringify({
         //     eventType: 'web_app_request_fullscreen'
         //     // eventData: {
