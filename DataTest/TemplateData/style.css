@@ -12,9 +12,10 @@ html {
 }
 
 /* Make it invisible after  */
-/* ton-connect {
+ton-connect {
     display: none !important;
-} */
+    visibility: hidden;
+}
 
 @supports (-webkit-touch-callout: none) {
 
