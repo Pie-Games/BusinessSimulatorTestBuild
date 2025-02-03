@@ -175,16 +175,16 @@ ton-connect {
     height: 18px;
     margin-top: 10px;
     margin-left: 6.5px;
-    background: url('progress-bar-empty-dark.png') no-repeat center;
-    display: none;
+    background: url('TemplateData/LoadingScreen/SLOT.png') no-repeat center;
+    /* display: none; */
 }
 
 #unity-progress-bar-full {
     width: 0%;
     height: 18px;
     margin-top: 10px;
-    background: url('progress-bar-full-dark.png') no-repeat center;
-    display: none;
+    background: url('TemplateData/LoadingScreen/Fill.png') no-repeat center;
+    /* display: none; */
 }
 
 #unity-footer {

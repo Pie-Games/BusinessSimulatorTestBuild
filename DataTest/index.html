@@ -24,7 +24,7 @@
     </script>
 
     <!-- Ton initialization -->
-    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+    <!-- <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script> -->
 
     <!-- Analytics initialization -->
     <script>
@@ -83,9 +83,15 @@
 <body>
     <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas" tabindex="-1"></canvas>
+        <div id="unity-loading-bar">
+            <div id="unity-progress-bar-empty">
+                <div id="unity-progress-bar-full"></div>
+            </div>
+        </div>
     </div>
     <div id="custom-overlay">
-        <div id="character-container" style="margin-bottom: 50px;"></div>
+        <!-- <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_1.png"> -->
+        <!-- <div id="character-container" style="margin-bottom: 50px;"></div>
         <div id="character-container">
             <img id="characted-background" src="TemplateData/LoadingScreen/CIRCLE_.png">
             <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_1.png">
@@ -96,30 +102,33 @@
             <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_2.png">
             <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_3.png">
             <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_4B.png">
-        </div>
-        <div id="load-text">
+        </div> -->
+        <!-- <div id="load-text">
             Loading
         </div>
         <div id="character-container">
             <img class="spinning-load-sprite" src="TemplateData/LoadingScreen/CIRCLE_Money_.png">
-        </div>
+        </div> -->
         <div id="character-container">
             <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_0.png">
             <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_1.png">
             <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_2.png">
             <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_3.png">
         </div>
-        <div id="ton-connect"></div>
+        <div id="unity-progress-bar-empty">
+            <div id="unity-progress-bar-full"></div>
+        </div>
+        <!-- <div id="ton-connect"></div> -->
     </div>
 
-    <script>
+    <!-- <script>
         const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
             manifestUrl: 'https://biztycoongame.xyz/tonconnect-manifest.json',
             buttonRootId: 'ton-connect'
         });
-    </script>
+    </script> -->
 
-    <script>
+    <!-- <script>
         async function connectToWallet() {
             const connectedWallet = await tonConnectUI.connectWallet();
             // Do something with connectedWallet if needed
@@ -130,7 +139,7 @@
         // connectToWallet().catch(error => {
         //     console.error("Error connecting to wallet:", error);
         // });
-    </script>
+    </script> -->
 
     <!-- Script part -->
     <script>
@@ -138,41 +147,41 @@
         var canvas = document.querySelector("#unity-canvas");
         var loadingBar = document.querySelector("#unity-canvas");
         var customOverlay = document.getElementById("custom-overlay");
-        var characterBackground = document.getElementById("characted-background");
-        var characterSprites = document.querySelectorAll('.character-sprite');
-        var loadingHint = document.getElementById('load-text');
+        // var characterBackground = document.getElementById("characted-background");
+        // var characterSprites = document.querySelectorAll('.character-sprite');
+        // var loadingHint = document.getElementById('load-text');
         var loadingTextSprites = document.querySelectorAll('.loading-text-sprite');
 
         // Animating text update
-        const phrases = [
-            "Earning 10 000 bucks earns you 1 $BIZTY coin",
-            "Improve objects and workers to increase your income",
-            "Don't forget to collect passive income daily",
-            "The more expensive the resources are, the more income you get",
-            "Workers can get tired, walk up to them to wake them up",
-            "Buildings break down from time to time, go over to fix them",
-            "Open new businesses to generate even more income",
-            "Tops in the leagues get rewards every day",
-            "Businesses continue to generate passive income while you're in the game",
-            "For every friend you invite, you will receive a reward and earn a percentage of their income"
-        ];
+        // const phrases = [
+        //     "Earning 10 000 bucks earns you 1 $BIZTY coin",
+        //     "Improve objects and workers to increase your income",
+        //     "Don't forget to collect passive income daily",
+        //     "The more expensive the resources are, the more income you get",
+        //     "Workers can get tired, walk up to them to wake them up",
+        //     "Buildings break down from time to time, go over to fix them",
+        //     "Open new businesses to generate even more income",
+        //     "Tops in the leagues get rewards every day",
+        //     "Businesses continue to generate passive income while you're in the game",
+        //     "For every friend you invite, you will receive a reward and earn a percentage of their income"
+        // ];
 
-        let textIndex = 0;
-        function updateParagraph() {
-            const randomIndex = Math.floor(Math.random() * phrases.length);
-            loadingHint.textContent = phrases[randomIndex];
-        }
-        updateParagraph();
-        setInterval(updateParagraph, 10000);
+        // let textIndex = 0;
+        // function updateParagraph() {
+        //     const randomIndex = Math.floor(Math.random() * phrases.length);
+        //     loadingHint.textContent = phrases[randomIndex];
+        // }
+        // updateParagraph();
+        // setInterval(updateParagraph, 10000);
 
         // Animating character
-        let charactedIndex = 0;
-        function updateCharacterSprites() {
-            characterSprites.forEach((sprite) => (sprite.style.display = 'none'));
-            characterSprites[charactedIndex].style.display = 'block';
-            charactedIndex = (charactedIndex + 1) % characterSprites.length;
-        }
-        setInterval(updateCharacterSprites, 250);
+        // let charactedIndex = 0;
+        // function updateCharacterSprites() {
+        //     characterSprites.forEach((sprite) => (sprite.style.display = 'none'));
+        //     characterSprites[charactedIndex].style.display = 'block';
+        //     charactedIndex = (charactedIndex + 1) % characterSprites.length;
+        // }
+        // setInterval(updateCharacterSprites, 250);
 
         // Animating loading text
         let loadingTextIndex = 0;
