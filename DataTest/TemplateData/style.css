@@ -55,10 +55,11 @@ html {
 
 #character-container {
     display: flex;
-    z-index: 1;  
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
+    width: 100%;
+    margin-bottom: 20px;  /* Adjust the space from the progress bar */
+    z-index: 2;           /* Ensure sprites appear above the background */
 }
 
 .character-sprite {
@@ -130,22 +131,20 @@ html {
     margin: 0 auto;      /* Center horizontally */
 }
 
-/* Empty Progress Bar (Base Layer) */
 #unity-progress-bar-empty {
     width: 100%;
-    height: auto;         /* Maintain aspect ratio */
-    display: block;       /* Removes unwanted gaps */
+    height: 100%;
+    display: block;
 }
 
-/* Full Progress Bar (Fill Layer) */
 #unity-progress-bar-full {
-    position: absolute;   /* Stack on top of the empty bar */
+    position: absolute;
     top: 0;
     left: 0;
-    width: 0%;            /* Start empty (0% progress) */
-    height: 100%;         /* Match the empty bar's height */
-    object-fit: cover;    /* Ensure proper scaling */
-    transition: width 0.3s ease;  /* Smooth progress animation */
+    width: 0%;                 /* Starts empty, will fill dynamically */
+    height: 100%;
+    object-fit: cover;         /* Scales properly */
+    transition: width 0.3s ease;  /* Smooth animation on progress */
 }
 
 #custom-overlay {
