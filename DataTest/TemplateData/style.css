@@ -180,6 +180,7 @@ html {
 }
 
 #unity-progress-bar-empty {
+    position: absolute;
     width: 141px;
     height: 18px;
     margin-top: 10px;
@@ -189,9 +190,11 @@ html {
 }
 
 #unity-progress-bar-full {
-    width: 0%;
+    position: absolute;
+    width: 141px;
     height: 18px;
     margin-top: 10px;
+    margin-left: 6.5px;
     /* background: url("TemplateData/LoadingScreen/Fill.png") no-repeat center; */
     /* display: none; */
 }
