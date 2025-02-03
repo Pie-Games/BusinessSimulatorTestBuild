@@ -125,11 +125,30 @@ html {
 
 #unity-loading-bar {
     position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    text-align: center;
+    width: 300px; /* Adjust as needed */
+    height: 50px;
+    margin: 0 auto; /* Center horizontally if needed */
+    overflow: hidden; /* Hide overflow beyond the empty bar */
+}
+
+#unity-progress-bar-empty {
+    position: absolute;
+    width: 141px;
+    height: 18px;
+    margin-top: 10px;
+    margin-left: 6.5px;
+    /* background: url("TemplateData/LoadingScreen/SLOT.png") no-repeat center; */
+    /* display: none; */
+}
+
+#unity-progress-bar-full {
+    position: absolute;
+    top: 0;
+    left: 0; /* Ensure it starts filling from the left */
+    height: 100%;
+    width: 0%; /* Start empty */
+    transition: width 0.3s ease; /* Smooth animation */
+    transform-origin: left; /* Optional: ensures scaling happens from the left if transform is used */
 }
 
 #custom-overlay {
@@ -180,26 +199,6 @@ html {
 
 #unity-logo {
     display: none !important;
-}
-
-#unity-progress-bar-empty {
-    position: absolute;
-    width: 141px;
-    height: 18px;
-    margin-top: 10px;
-    margin-left: 6.5px;
-    /* background: url("TemplateData/LoadingScreen/SLOT.png") no-repeat center; */
-    /* display: none; */
-}
-
-#unity-progress-bar-full {
-    position: absolute;
-    width: 141px;
-    height: 18px;
-    margin-top: 10px;
-    margin-left: 6.5px;
-    /* background: url("TemplateData/LoadingScreen/Fill.png") no-repeat center; */
-    /* display: none; */
 }
 
 #unity-footer {
