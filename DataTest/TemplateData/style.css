@@ -18,7 +18,7 @@ html {
     width: 100%;
     height: 100%;
     object-fit: cover;          /* Fill the entire space, cropping if necessary */
-    object-position: top center; /* Prioritize cropping from the bottom if needed */
+    object-position: bottom center; /* Prioritize cropping from the bottom if needed */
     z-index: -1;                /* Ensure it stays behind other content */
 }
 
