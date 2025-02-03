@@ -125,7 +125,7 @@ html {
 
 #unity-loading-bar {
     position: relative;  /* Acts as the reference point */
-    width: 300px;        /* Set desired width */
+    width: 200px;        /* Set desired width */
     height: auto;        /* Adjust based on image ratio */
     margin: 0 auto;      /* Center horizontally */
 }
