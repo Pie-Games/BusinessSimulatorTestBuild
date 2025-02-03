@@ -54,12 +54,14 @@ html {
 }
 
 #character-container {
-    display: flex;
+    position: absolute;          /* Position it relative to the viewport */
+    bottom: 40px;                /* Distance from the bottom of the screen */
+    left: 50%;                   /* Center horizontally */
+    transform: translateX(-50%); /* Perfectly center the container */
+    display: flex;               /* Align sprites horizontally */
     justify-content: center;
     align-items: center;
-    width: 100%;
-    margin-bottom: 20px;  /* Adjust the space from the progress bar */
-    z-index: 2;           /* Ensure sprites appear above the background */
+    z-index: 2;                  /* Ensure it's above the background */
 }
 
 .character-sprite {
@@ -125,10 +127,17 @@ html {
 }
 
 #unity-loading-bar {
-    position: relative;  /* Acts as the reference point */
+    position: absolute;  /* Acts as the reference point */
     width: 200px;        /* Set desired width */
     height: auto;        /* Adjust based on image ratio */
     margin: 0 auto;      /* Center horizontally */
+    bottom: 20px;                
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;               
+    justify-content: center;
+    align-items: center;
+    z-index: 2;            
 }
 
 #unity-progress-bar-empty {
