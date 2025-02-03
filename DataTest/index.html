@@ -90,7 +90,7 @@
         </div>
     </div>
     <div id="custom-overlay">
-        <!-- <img class="character-sprite" src="TemplateData/LoadingScreen/WALK_1.png"> -->
+        <!-- <img class="character-sprite" src="TemplateData/LoadingScreen/SLOT.png"> -->
         <!-- <div id="character-container" style="margin-bottom: 50px;"></div>
         <div id="character-container">
             <img id="characted-background" src="TemplateData/LoadingScreen/CIRCLE_.png">
@@ -147,10 +147,12 @@
         var canvas = document.querySelector("#unity-canvas");
         var loadingBar = document.querySelector("#unity-canvas");
         var customOverlay = document.getElementById("custom-overlay");
+        var loadingTextSprites = document.querySelectorAll('.loading-text-sprite');
+        var loadingBar = document.querySelector("#unity-loading-bar");
+        var progressBarFull = document.querySelector("#unity-progress-bar-full");
         // var characterBackground = document.getElementById("characted-background");
         // var characterSprites = document.querySelectorAll('.character-sprite');
         // var loadingHint = document.getElementById('load-text');
-        var loadingTextSprites = document.querySelectorAll('.loading-text-sprite');
 
         // Animating text update
         // const phrases = [
@@ -262,12 +264,14 @@
             canvas.style.height = "100%";
         }
 
+        loadingBar.style.display = "block";
         var myGameInstance = null;
         var unityInstance = null;
         var script = document.createElement("script");
         script.src = loaderUrl;
         script.onload = () => {
             createUnityInstance(canvas, config, (progress) => {
+                progressBarFull.style.width = 100 * progress + "%";
             }).then((instance) => {
                 myGameInstance = instance;
                 unityInstance = instance;

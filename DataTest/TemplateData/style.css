@@ -175,7 +175,7 @@ ton-connect {
     height: 18px;
     margin-top: 10px;
     margin-left: 6.5px;
-    background: url('TemplateData/LoadingScreen/SLOT.png') no-repeat center;
+    background: url("TemplateData/LoadingScreen/SLOT.png") no-repeat center;
     /* display: none; */
 }
 
@@ -183,7 +183,7 @@ ton-connect {
     width: 0%;
     height: 18px;
     margin-top: 10px;
-    background: url('TemplateData/LoadingScreen/Fill.png') no-repeat center;
+    background: url("TemplateData/LoadingScreen/Fill.png") no-repeat center;
     /* display: none; */
 }
 
