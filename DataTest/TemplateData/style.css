@@ -144,11 +144,11 @@ html {
 #unity-progress-bar-full {
     position: absolute;
     top: 0;
-    left: 0; /* Ensure it starts filling from the left */
-    height: 100%;
-    width: 0%; /* Start empty */
-    transition: width 0.3s ease; /* Smooth animation */
-    transform-origin: left; /* Optional: ensures scaling happens from the left if transform is used */
+    left: 0;
+    width: 141px;
+    height: 18px; /* Start empty */
+    transition: width 0.3s ease;
+    transform-origin: left;
 }
 
 #custom-overlay {
