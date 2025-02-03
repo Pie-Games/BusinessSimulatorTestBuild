@@ -83,11 +83,6 @@
 <body>
     <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas" tabindex="-1"></canvas>
-        <div id="unity-loading-bar">
-            <div id="unity-progress-bar-empty">
-                <div id="unity-progress-bar-full"></div>
-            </div>
-        </div>
     </div>
     <div id="custom-overlay">
         <!-- <img class="character-sprite" src="TemplateData/LoadingScreen/SLOT.png"> -->
@@ -109,6 +104,12 @@
         <div id="character-container">
             <img class="spinning-load-sprite" src="TemplateData/LoadingScreen/CIRCLE_Money_.png">
         </div> -->
+        
+        <div id="unity-loading-bar">
+            <div id="unity-progress-bar-empty">
+                <div id="unity-progress-bar-full"></div>
+            </div>
+        </div>
         <div id="character-container">
             <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_0.png">
             <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_1.png">
@@ -145,10 +146,9 @@
     <script>
         var container = document.querySelector("#unity-container");
         var canvas = document.querySelector("#unity-canvas");
-        var loadingBar = document.querySelector("#unity-canvas");
+        var loadingBar = document.querySelector("#unity-loading-bar");
         var customOverlay = document.getElementById("custom-overlay");
         var loadingTextSprites = document.querySelectorAll('.loading-text-sprite');
-        var loadingBar = document.querySelector("#unity-loading-bar");
         var progressBarFull = document.querySelector("#unity-progress-bar-full");
         // var characterBackground = document.getElementById("characted-background");
         // var characterSprites = document.querySelectorAll('.character-sprite');
