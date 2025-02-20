@@ -21,7 +21,9 @@
     <type fullname="StallManufacturerCheeserSpine" preserve="all" />
     <type fullname="StallManufacturerChickenSpine" preserve="all" />
     <type fullname="StallManufacturerController" preserve="all" />
+    <type fullname="StallManufacturerFrierSpine" preserve="all" />
     <type fullname="StallManufacturerJuicerSpine" preserve="all" />
+    <type fullname="StallManufacturerKebabSpine" preserve="all" />
     <type fullname="StallManufacturerLunchBoxSpine" preserve="all" />
     <type fullname="StallManufacturerMillSpine" preserve="all" />
     <type fullname="StallManufacturerPizzaSpine" preserve="all" />
