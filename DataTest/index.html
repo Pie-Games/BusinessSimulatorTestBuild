@@ -256,7 +256,8 @@
         script.src = loaderUrl;
         script.onload = () => {
             createUnityInstance(canvas, config, (progress) => {
-                progressBarFull.style.width = 100 * progress + "%";
+                let progressPercentage = 100 * progress;
+                progressBarFull.style.width = progressPercentage + "%"; 
             }).then((instance) => {
                 myGameInstance = instance;
                 unityInstance = instance;
