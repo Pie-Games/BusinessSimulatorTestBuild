@@ -261,6 +261,7 @@
                 myGameInstance = instance;
                 unityInstance = instance;
 
+                window.Telegram.WebApp.enableClosingConfirmation();
                 // loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
                 // clearInterval(loadTextInterval);
             }).catch((message) => {
