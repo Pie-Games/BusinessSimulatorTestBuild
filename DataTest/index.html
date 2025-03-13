@@ -241,34 +241,49 @@
             productVersion: "1.0",
         };
 
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            container.className = "unity-mobile";
-            canvas.className = "unity-mobile";
-        } else {
-            canvas.style.width = "100%";
-            canvas.style.height = "100%";
+        var userLang = navigator.language || navigator.userLanguage; 
+        var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        var isTelegram = (typeof window.Telegram !== 'undefined' && Telegram.WebApp);
+        
+        if (!isMobile || !isTelegram) {
+            if (userLang.toLowerCase().includes("ru")) {
+                alert("Пожалуйста, откройте игру в Telegram на телефоне");
+            } else {
+                alert("Please open the game in Telegram on your phone");
+            }
+            document.getElementById("unity-container").style.display = 'none';
         }
+        else
+        {
+            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                container.className = "unity-mobile";
+                canvas.className = "unity-mobile";
+            } else {
+                canvas.style.width = "100%";
+                canvas.style.height = "100%";
+            }
 
-        loadingBar.style.display = "block";
-        var myGameInstance = null;
-        var unityInstance = null;
-        var script = document.createElement("script");
-        script.src = loaderUrl;
-        script.onload = () => {
-            createUnityInstance(canvas, config, (progress) => {
-                progressBarFull.style.width = 100 * progress + "%";
-            }).then((instance) => {
-                myGameInstance = instance;
-                unityInstance = instance;
+            loadingBar.style.display = "block";
+            var myGameInstance = null;
+            var unityInstance = null;
+            var script = document.createElement("script");
+            script.src = loaderUrl;
+            script.onload = () => {
+                createUnityInstance(canvas, config, (progress) => {
+                    progressBarFull.style.width = 100 * progress + "%";
+                }).then((instance) => {
+                    myGameInstance = instance;
+                    unityInstance = instance;
 
-                window.Telegram.WebApp.enableClosingConfirmation();
-                // loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
-                // clearInterval(loadTextInterval);
-            }).catch((message) => {
-                alert(message);
-            });
+                    window.Telegram.WebApp.enableClosingConfirmation();
+                    // loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
+                    // clearInterval(loadTextInterval);
+                }).catch((message) => {
+                    alert(message);
+                });
+            }
+            document.body.appendChild(script);
         }
-        document.body.appendChild(script);
     </script>
 </body>
 
