@@ -245,7 +245,8 @@
         var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
         var isTelegram = (typeof window.Telegram !== 'undefined' && Telegram.WebApp);
         
-        if (!isTelegram) {
+        //if (!isTelegram) { // for tests
+        if (!isMobile || !isTelegram && false) {
             if (userLang.toLowerCase().includes("ru")) {
                 alert("Пожалуйста, откройте игру в Telegram на телефоне");
             } else {
