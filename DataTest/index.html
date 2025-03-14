@@ -246,7 +246,7 @@
         var isTelegram = (typeof window.Telegram !== 'undefined' && Telegram.WebApp);
         
         if (!isTelegram) { // for tests
-        //if (!isMobile || !isTelegram && false) { // for prod
+        //if (!isMobile || !isTelegram) { // for prod
             if (userLang.toLowerCase().includes("ru")) {
                 alert("Пожалуйста, откройте игру в Telegram на телефоне");
             } else {
