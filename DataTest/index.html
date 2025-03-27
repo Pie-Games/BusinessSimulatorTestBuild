@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="TemplateData/sign.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes, maximum-scale=1, user-scalable=no">
+        content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes, maximum-scale=1, user-scalable=no">
 
     <!-- Socket server init -->
     <!-- <script src="https://cdn.socket.io/4.0.0/socket.io.js"></script> -->
@@ -32,228 +32,260 @@
     </script> -->
 
     <!-- Ton initialization -->
-    <script src="https://unpkg.com/@tonconnect/ui@2.0.12/dist/tonconnect-ui.min.js"></script>
-    <script src="https://unpkg.com/tonweb@0.0.66/dist/tonweb.js"></script>
+<script src="https://unpkg.com/@tonconnect/ui@2.0.12/dist/tonconnect-ui.min.js"></script>
+    <script src="https://unpkg.com/tonweb@0.0.66/dist/tonweb.js"></script> 
+
+    <!-- Analytics initialization -->
+    <!-- <script>
+        const analyticsScript = document.createElement('script');
+        analyticsScript.src = "https://tganalytics.xyz/index.js";
+        analyticsScript.async = true;
+
+        analyticsScript.onload = () => {
+            telegramAnalytics.init({
+                token: 'eyJhcHBfbmFtZSI6IkJpelR5Y29vbiIsImFwcF91cmwiOiJodHRwcy8vdC5tZS9iaXp0eWNvb25fYm90IiwiYXBwX2RvbWFpbiI6Imh0dHBzOi8vYml6dHljb29uZ2FtZS5jb20vIn0=!fQGzXhnIbt6QG8Zgh4xgORjCUO2+qcWCiSbinwo+4Vg=',
+                appName: 'BizTycoon',
+            });
+        };
+
+        document.head.appendChild(analyticsScript);
+    </script> -->
 
     <!-- Telegram init -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-        // Раскрываем мини-апп при загрузке
+        // var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        // if (isMobile) {
+        //     console.log("Mobile device detected");
+        // } else {
+        //     console.log("Desktop device detected");
+        // }
+
         window.Telegram.WebApp.expand();
         function expandMiniApp() {
             console.log("Expanding Mini App...");
             if (window.TelegramWebviewProxy) {
                 window.TelegramWebviewProxy.postEvent('web_app_expand', JSON.stringify({}));
+                // if (isMobile)
+                //     window.TelegramWebviewProxy.postEvent('web_app_request_fullscreen', JSON.stringify({}));
                 window.Telegram.WebApp.expand();
             } else if (window.parent) {
+                const data = JSON.stringify({
+                    eventType: 'web_app_expand',
+                    eventData: {}
+                });
                 window.parent.postEvent('web_app_expand');
+                // if (isMobile)
+                //     window.parent.postEvent('web_app_request_fullscreen');
             }
         }
+
         window.addEventListener('load', function () {
             setTimeout(expandMiniApp, 10);
         });
     </script>
 </head>
 
+<!-- Loading screen body -->
 <body>
-<div id="unity-container" class="unity-desktop">
-    <canvas id="unity-canvas" tabindex="-1"></canvas>
-</div>
-<div id="custom-overlay">
-    <img id="back-image" src="TemplateData/LoadingScreen/Cover.png">
-    <div id="unity-loading-bar">
-        <img id="unity-progress-bar-empty" src="TemplateData/LoadingScreen/SLOT.png">
-        <img id="unity-progress-bar-full" src="TemplateData/LoadingScreen/Fill.png">
+    <div id="unity-container" class="unity-desktop">
+        <canvas id="unity-canvas" tabindex="-1"></canvas>
     </div>
-    <div id="character-container">
-        <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_0.png">
-        <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_1.png">
-        <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_2.png">
-        <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_3.png">
+    <div id="custom-overlay"> 
+        <img id="back-image" src="TemplateData/LoadingScreen/Cover.png">
+        <div id="unity-loading-bar">
+            <img id="unity-progress-bar-empty" src="TemplateData/LoadingScreen/SLOT.png">
+            <img id="unity-progress-bar-full" src="TemplateData/LoadingScreen/Fill.png">
+        </div>
+        <div id="character-container">
+            <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_0.png">
+            <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_1.png">
+            <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_2.png">
+            <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_3.png">
+        </div>
+        <!-- <div id="ton-connect"></div> -->
     </div>
-</div>
 
-<script>
-    // ==============================
-    // 1) Переменные окружения
-    // ==============================
-    var container = document.querySelector("#unity-container");
-    var canvas = document.querySelector("#unity-canvas");
-    var loadingBar = document.querySelector("#unity-loading-bar");
-    var customOverlay = document.getElementById("custom-overlay");
-    var loadingTextSprites = document.querySelectorAll('.loading-text-sprite');
-    var progressBarFull = document.querySelector("#unity-progress-bar-full");
-
-    let userToken;
-    let unityTokenReady = false;
-
-    // ==============================
-    // 2) Авторизация (lateLogin)
-    // ==============================
-    function lateLogin() {
-        var app = app || {};
-        var initData = window.Telegram.WebApp.initData;
-        var initDataObj = { init_data: initData };
-        var initDataJson = JSON.stringify(initDataObj);
-
-        if (initDataJson === undefined) {
-            console.log("Init data json is undefined");
-        }
-
-        app.postAuthRequest = function (authData, callback) {
-            const url = "https://plankton-app-vzfoe.ondigitalocean.app/api/login";
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: initDataJson
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    userToken = data.token;
-                    unityTokenReady = true;
-                    if (callback) callback(null, data);
-                })
-                .catch(error => {
-                    console.error("Error during authentication request:", error);
-                    if (callback) callback(error, null);
-                });
-        };
-
-        app.postAuthRequest(function (error, response) {
-            if (error) {
-                console.error("Error callback:", error);
-            } else {
-                console.log("Success callback:", response);
-            }
+    <!-- <script>
+        const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+            manifestUrl: 'https://biztycoongame.xyz/tonconnect-manifest.json',
+            buttonRootId: 'ton-connect'
         });
-    }
-    lateLogin();
+    </script> -->
 
-    // ==============================
-    // 3) Предзагрузка бандла локации
-    // ==============================
-    async function preloadLocationBundle(lastLocation) {
-        try {
-            // 3.1 Загрузка catalog.json
-            const catalogUrl = "https://biztycoongame.xyz/StreamingAssets/aa/catalog.json";
-            const catalogRes = await fetch(catalogUrl);
-            if (!catalogRes.ok) {
-                console.warn("Не удалось загрузить catalog.json:", catalogRes.statusText);
-                return;
-            }
-            const catalogData = await catalogRes.json();
-
-            // 3.2 Ищем URL бандла, в котором есть, например: "location_kebab_assets_all_"
-            // Если lastLocation = "kebab", то ищем "location_kebab_assets_all_"
-            const searchFragment = "location_" + lastLocation.toLowerCase() + "_assets_all_";
-            const matchedUrl = catalogData.m_InternalIds.find(x => x.includes(searchFragment));
-            if (!matchedUrl) {
-                console.warn("Не нашли URL для локации:", lastLocation, "в catalog.json");
-                return;
-            }
-
-            // 3.3 Предзагрузка (fetch) бандла
-            console.log("Предзагружаю бандл:", matchedUrl);
-            const resp = await fetch(matchedUrl);
-            if (!resp.ok) {
-                console.warn("Fetch bundle error:", resp.statusText);
-            } else {
-                console.log(`Бандл локации '${lastLocation}' предзагружен в кэш.`);
-            }
-        } catch(e) {
-            console.error("Ошибка в preloadLocationBundle:", e);
+    <!-- <script>
+        async function connectToWallet() {
+            const connectedWallet = await tonConnectUI.connectWallet();
+            // Do something with connectedWallet if needed
+            console.log(connectedWallet);
         }
-    }
 
-    // ==============================
-    // 4) Запуск Unity (с предзагрузкой)
-    // ==============================
-    async function initAndStartUnity() {
-        // 4.1 Узнаём last_location c вашего бэка
-        let lastLocation = "farm"; // по умолчанию
-        try {
-            // Замените URL ниже на ваш реальный маршрут
-            const userResp = await fetch("https://plankton-app-vzfoe.ondigitalocean.app/api/user/get");
-            if (userResp.ok) {
-                const userData = await userResp.json();
-                if (userData && userData.last_location) {
-                    lastLocation = userData.last_location;
+        // Call the function
+        // connectToWallet().catch(error => {
+        //     console.error("Error connecting to wallet:", error);
+        // });
+    </script> -->
+
+    <!-- Script part -->
+    <script>
+        var container = document.querySelector("#unity-container");
+        var canvas = document.querySelector("#unity-canvas");
+        var loadingBar = document.querySelector("#unity-loading-bar");
+        var customOverlay = document.getElementById("custom-overlay");
+        var loadingTextSprites = document.querySelectorAll('.loading-text-sprite');
+        var progressBarFull = document.querySelector("#unity-progress-bar-full");
+        // var characterBackground = document.getElementById("characted-background");
+        // var characterSprites = document.querySelectorAll('.character-sprite');
+        // var loadingHint = document.getElementById('load-text');
+
+        // Animating text update
+        // const phrases = [
+        //     "Earning 10 000 bucks earns you 1 $BIZTY coin",
+        //     "Improve objects and workers to increase your income",
+        //     "Don't forget to collect passive income daily",
+        //     "The more expensive the resources are, the more income you get",
+        //     "Workers can get tired, walk up to them to wake them up",
+        //     "Buildings break down from time to time, go over to fix them",
+        //     "Open new businesses to generate even more income",
+        //     "Tops in the leagues get rewards every day",
+        //     "Businesses continue to generate passive income while you're in the game",
+        //     "For every friend you invite, you will receive a reward and earn a percentage of their income"
+        // ];
+
+        // let textIndex = 0;
+        // function updateParagraph() {
+        //     const randomIndex = Math.floor(Math.random() * phrases.length);
+        //     loadingHint.textContent = phrases[randomIndex];
+        // }
+        // updateParagraph();
+        // setInterval(updateParagraph, 10000);
+
+        // Animating character
+        // let charactedIndex = 0;
+        // function updateCharacterSprites() {
+        //     characterSprites.forEach((sprite) => (sprite.style.display = 'none'));
+        //     characterSprites[charactedIndex].style.display = 'block';
+        //     charactedIndex = (charactedIndex + 1) % characterSprites.length;
+        // }
+        // setInterval(updateCharacterSprites, 250);
+
+        // Animating loading text
+        let loadingTextIndex = 0;
+        function updateLoadingTextSprites() {
+            loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
+            loadingTextSprites[loadingTextIndex].style.display = 'block';
+            loadingTextIndex = (loadingTextIndex + 1) % loadingTextSprites.length;
+        }
+        var loadTextInterval = setInterval(updateLoadingTextSprites, 500);
+
+        // Logging to backend
+        let userToken;
+        let unityTokenReady = false;
+        function lateLogin() {
+            var app = app || {};
+            var initData = window.Telegram.WebApp.initData;
+            var initDataObj = { init_data: initData };
+            var initDataJson = JSON.stringify(initDataObj);
+
+            if (initDataJson === undefined) {
+                console.log("Init data json is undefined");
+            }
+
+            app.postAuthRequest = function (authData, callback) {
+                const url = "https://plankton-app-vzfoe.ondigitalocean.app/api/login";
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: initDataJson
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        userToken = data.token;
+                        unityTokenReady = true;
+                        if (callback) callback(null, data);
+                    })
+                    .catch(error => {
+                        console.error("Error during authentication request:", error);
+                        if (callback) callback(error, null);
+                    });
+            };
+
+            app.postAuthRequest(function (error, response) {
+                if (error) {
+                    console.error("Error callback:", error);
+                } else {
+                    console.log("Success callback:", response);
                 }
-                console.log("С бэка last_location =", lastLocation);
-            } else {
-                console.warn("Не удалось получить last_location:", userResp.statusText);
-            }
-        } catch (err) {
-            console.warn("Ошибка /user/get:", err);
+            });
         }
+        lateLogin();
 
-        // 4.2 Предзагрузка бандла локации (если нашли в catalog.json)
-        await preloadLocationBundle(lastLocation);
-
-        // 4.3 Проверка окружения (Telegram / мобильный)
-        var userLang = navigator.language || navigator.userLanguage;
-        var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        var isTelegram = (typeof window.Telegram !== 'undefined' && Telegram.WebApp);
-
-        if (!isTelegram) { // For local tests
-            if (userLang.toLowerCase().includes("ru")) {
-                alert("Пожалуйста, откройте игру в Telegram на телефоне");
-            } else {
-                alert("Please open the game in Telegram on your phone");
-            }
-            document.getElementById("unity-container").style.display = 'none';
-            return;
-        }
-
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            container.className = "unity-mobile";
-            canvas.className = "unity-mobile";
-        } else {
-            canvas.style.width = "100%";
-            canvas.style.height = "100%";
-        }
-
-        loadingBar.style.display = "block";
-
-        // 4.4 Подключаем скрипт для запуска Unity
+        // Starting build
         var buildUrl = "Build";
-        var loaderUrl = buildUrl + "/02cbca31a0c1e949f10c9b2b7b755307.loader.js";
+        var loaderUrl = buildUrl + "/9853637125e801e9aae48e78dbbdcfca.loader.js";
         var config = {
-            dataUrl: buildUrl + "/9b4174083d02aa6bf2594d828abb0a4f.data.unityweb",
-            frameworkUrl: buildUrl + "/8247354be82e564ce387d3f9a0b872c6.framework.js.unityweb",
-            codeUrl: buildUrl + "/8e3c9b676c5a2fb6d800455f9c4f6d27.wasm.unityweb",
+            dataUrl: buildUrl + "/2b4dfce26342a4d3ba20072495a31887.data.unityweb",
+            frameworkUrl: buildUrl + "/105bc14fb2cf0add834f6fd4a9708f11.framework.js.unityweb",
+            codeUrl: buildUrl + "/5ccbfe7ce604a3999b5a055fef647e93.wasm.unityweb",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "DefaultCompany",
             productName: "motchi",
             productVersion: "1.0",
         };
 
-        var script = document.createElement("script");
-        script.src = loaderUrl;
-        script.onload = () => {
-            createUnityInstance(canvas, config, (progress) => {
-                progressBarFull.style.width = 100 * progress + "%";
-            }).then((instance) => {
-                window.Telegram.WebApp.enableClosingConfirmation();
-                console.log("Unity запущен");
-            }).catch((message) => {
-                alert(message);
-            });
-        };
-        document.body.appendChild(script);
-    }
+        var userLang = navigator.language || navigator.userLanguage; 
+        var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        var isTelegram = (typeof window.Telegram !== 'undefined' && Telegram.WebApp);
+        
+        if (!isTelegram) { // for tests
+        //if (!isMobile || !isTelegram) { // for prod
+            if (userLang.toLowerCase().includes("ru")) {
+                alert("Пожалуйста, откройте игру в Telegram на телефоне");
+            } else {
+                alert("Please open the game in Telegram on your phone");
+            }
+            document.getElementById("unity-container").style.display = 'none';
+        }
+        else
+        {
+            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                container.className = "unity-mobile";
+                canvas.className = "unity-mobile";
+            } else {
+                canvas.style.width = "100%";
+                canvas.style.height = "100%";
+            }
 
-    // ==============================
-    // 5) Запуск всей логики
-    // ==============================
-    initAndStartUnity();
-</script>
+            loadingBar.style.display = "block";
+            var myGameInstance = null;
+            var unityInstance = null;
+            var script = document.createElement("script");
+            script.src = loaderUrl;
+            script.onload = () => {
+                createUnityInstance(canvas, config, (progress) => {
+                    progressBarFull.style.width = 100 * progress + "%";
+                }).then((instance) => {
+                    myGameInstance = instance;
+                    unityInstance = instance;
+
+                    window.Telegram.WebApp.enableClosingConfirmation();
+                    // loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
+                    // clearInterval(loadTextInterval);
+                }).catch((message) => {
+                    alert(message);
+                });
+            }
+            document.body.appendChild(script);
+        }
+    </script>
 </body>
+
 </html>
