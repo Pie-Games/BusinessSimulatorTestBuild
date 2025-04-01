@@ -21,7 +21,6 @@
     <type fullname="StallManufacturerCheeserSpine" preserve="all" />
     <type fullname="StallManufacturerChickenSpine" preserve="all" />
     <type fullname="StallManufacturerController" preserve="all" />
-    <type fullname="StallManufacturerCowSpine" preserve="all" />
     <type fullname="StallManufacturerFrierSpine" preserve="all" />
     <type fullname="StallManufacturerJuicerSpine" preserve="all" />
     <type fullname="StallManufacturerKebabSpine" preserve="all" />
@@ -53,8 +52,8 @@
     <type fullname="Spine.Unity.SkeletonDataAsset" preserve="all" />
     <type fullname="Spine.Unity.SpineAtlasAsset" preserve="all" />
     <type fullname="Spine.Unity.BlendModeMaterials" preserve="nothing" serialized="true" />
-    <type fullname="Spine.Unity.BlendModeMaterials/ReplacementMaterial" preserve="nothing" serialized="true" />
     <type fullname="Spine.Unity.SkeletonRenderer/SpriteMaskInteractionMaterials" preserve="nothing" serialized="true" />
+    <type fullname="Spine.Unity.BlendModeMaterials/ReplacementMaterial" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
@@ -69,7 +68,6 @@
   <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.GameObject" preserve="all" />
     <type fullname="UnityEngine.Material" preserve="all" />
-    <type fullname="UnityEngine.Mesh" preserve="all" />
     <type fullname="UnityEngine.MeshFilter" preserve="all" />
     <type fullname="UnityEngine.MeshRenderer" preserve="all" />
     <type fullname="UnityEngine.Object" preserve="all" />
