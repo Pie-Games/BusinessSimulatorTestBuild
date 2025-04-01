@@ -16,6 +16,14 @@
     <!-- Ads initialization -->
     <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
     <script>
+        document.addEventListener('touchmove', function(event) {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        }, { passive: false });
+    </script>
+    
+    <script>
         const AdController = window.Adsgram.init({
             blockId: "6544",
             debug: true,
