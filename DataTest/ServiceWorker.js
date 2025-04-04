@@ -1,3 +1,12 @@
+const cacheName = "DefaultCompany-motchi-1.0";
+const contentToCache = [
+    "Build/9853637125e801e9aae48e78dbbdcfca.loader.js",
+    "Build/2e8188c77f0f6b14fa6bb245dcad2ddb.framework.js.unityweb",
+    "Build/b80da58026fda321f553cde70c5528b5.data.unityweb",
+    "Build/2902cbf1eb33931ddd24f0061261e987.wasm.unityweb",
+    "TemplateData/style.css"
+
+];
 
 self.addEventListener('install', function (e) {
     console.log('[Service Worker] Install');
