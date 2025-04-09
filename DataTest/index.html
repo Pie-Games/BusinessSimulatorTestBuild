@@ -38,15 +38,7 @@
         });
     </script> -->
 
-    <script src="https://richinfo.co/richpartners/telegram/js/tg-ob.js"></script>
-    <script>
-      window.TelegramAdsController = new TelegramAdsController();
-      window.TelegramAdsController.initialize({
-        pubId: "965276",
-        appId: "1832",
-        debug: true
-      });
-    </script>
+
 
     <!-- Ton initialization -->
     <script src="https://unpkg.com/@tonconnect/ui@2.0.12/dist/tonconnect-ui.min.js"></script>
@@ -310,6 +302,16 @@
             window.showOnclicka = show;
           })
           .catch(err => console.error('OnClicka init error:', err));
+    </script>
+	
+    <script src="https://richinfo.co/richpartners/telegram/js/tg-ob.js"></script>
+    <script>
+      window.TelegramAdsController = new TelegramAdsController();
+      window.TelegramAdsController.initialize({
+        pubId: "965276",
+        appId: "1832",
+        debug: true
+      });
     </script>
 </body>
 
