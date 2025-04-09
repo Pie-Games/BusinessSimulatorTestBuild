@@ -48,15 +48,6 @@
       });
     </script>
 
-    <script src="https://js.onclckvd.com/in-stream-ad-admanager/tma.js"></script>
-    <script>
-        window.initCdTma?.({ id: 6062830 })
-          .then(show => {
-            window.showOnclicka = show;
-          })
-          .catch(err => console.error('OnClicka init error:', err));
-    </script>
-
     <!-- Ton initialization -->
     <script src="https://unpkg.com/@tonconnect/ui@2.0.12/dist/tonconnect-ui.min.js"></script>
     <script src="https://unpkg.com/tonweb@0.0.66/dist/tonweb.js"></script> 
@@ -311,6 +302,14 @@
             }
             document.body.appendChild(script);
         }
+    </script>
+	<script src="https://js.onclckvd.com/in-stream-ad-admanager/tma.js"></script>
+    <script>
+        window.initCdTma?.({ id: 6062830 })
+          .then(show => {
+            window.showOnclicka = show;
+          })
+          .catch(err => console.error('OnClicka init error:', err));
     </script>
 </body>
 
