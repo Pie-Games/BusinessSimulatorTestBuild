@@ -38,7 +38,15 @@
         });
     </script> -->
 
-
+    <script src="https://richinfo.co/richpartners/telegram/js/tg-ob.js"></script>
+    <script>
+      window.TelegramAdsController = new TelegramAdsController();
+      window.TelegramAdsController.initialize({
+        pubId: "965276",
+        appId: "1832",
+        debug: true
+      });
+    </script>
 
     <!-- Ton initialization -->
     <script src="https://unpkg.com/@tonconnect/ui@2.0.12/dist/tonconnect-ui.min.js"></script>
@@ -94,7 +102,6 @@
             setTimeout(expandMiniApp, 10);
         });
     </script>
-    <script src="https://richinfo.co/richpartners/telegram/js/tg-ob.js"></script>
 </head>
 
 <!-- Loading screen body -->
@@ -243,7 +250,7 @@
         var loaderUrl = buildUrl + "/9b55f718f10516ab5328bb8fa8b7a538.loader.js";
         var config = {
             dataUrl: buildUrl + "/0cd6cdf6da0995820ceff6049995c771.data.br",
-            frameworkUrl: buildUrl + "/44bf3c828f3612b9427f1342b854955b.framework.js.br",
+            frameworkUrl: buildUrl + "/7c213ef5a854b4459ba2408559a51b59.framework.js.br",
             codeUrl: buildUrl + "/2c4439f537d6d01da5ed98022f534c6b.wasm.br",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "DefaultCompany",
@@ -296,22 +303,13 @@
             document.body.appendChild(script);
         }
     </script>
-	<script src="https://js.onclckvd.com/in-stream-ad-admanager/tma.js"></script>
+    <script src="https://js.onclckvd.com/in-stream-ad-admanager/tma.js"></script>
     <script>
         window.initCdTma?.({ id: 6062830 })
           .then(show => {
             window.showOnclicka = show;
           })
           .catch(err => console.error('OnClicka init error:', err));
-    </script>
-	
-    <script>
-      window.TelegramAdsController = new TelegramAdsController();
-      window.TelegramAdsController.initialize({
-        pubId: "965276",
-        appId: "1832",
-        debug: true
-      });
     </script>
 </body>
 
