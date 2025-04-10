@@ -7,17 +7,18 @@
     <title>Biz Tycoon</title>
     <link rel="shortcut icon" href="TemplateData/sign.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes, maximum-scale=1, user-scalable=no">
 
     <!-- Socket server init -->
-    <script src="https://cdn.socket.io/4.0.0/socket.io.js"></script>
+    <!-- <script src="https://cdn.socket.io/4.0.0/socket.io.js"></script> -->
 
     <!-- Ads initialization -->
     <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
     <script>
         const AdController = window.Adsgram.init({
             blockId: "6544",
-            debug: false,
+            debug: true,
             debugBannerType: "RewardedVideo"
         });
     </script>
@@ -30,13 +31,19 @@
     </script>
 
     <script src="https://static.sonartech.io/lib/1.0.0/sonar.js?appId=app_ae25b59e"></script>
+    <!-- <script>
+        window.Sonar.show({ 
+            adUnit: 'app_ae25b59e',
+            loader: false,
+        });
+    </script> -->
 
     <!-- Ton initialization -->
-    <script src="https://unpkg.com/@tonconnect/ui@2.0.12/dist/tonconnect-ui.min.js"></script>
-    <script src="https://unpkg.com/tonweb@0.0.66/dist/tonweb.js"></script>
+<script src="https://unpkg.com/@tonconnect/ui@2.0.12/dist/tonconnect-ui.min.js"></script>
+    <script src="https://unpkg.com/tonweb@0.0.66/dist/tonweb.js"></script> 
 
     <!-- Analytics initialization -->
-    <script>
+    <!-- <script>
         const analyticsScript = document.createElement('script');
         analyticsScript.src = "https://tganalytics.xyz/index.js";
         analyticsScript.async = true;
@@ -49,7 +56,7 @@
         };
 
         document.head.appendChild(analyticsScript);
-    </script>
+    </script> -->
 
     <!-- Telegram init -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -85,23 +92,14 @@
             setTimeout(expandMiniApp, 10);
         });
     </script>
-    <script src="https://richinfo.co/richpartners/telegram/js/tg-ob.js"></script>
-    <script>
-      window.TelegramAdsController = new TelegramAdsController();
-      window.TelegramAdsController.initialize({
-        pubId: "965276",
-        appId: "2041",
-      });
-    </script>
 </head>
 
 <!-- Loading screen body -->
-
 <body>
     <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas" tabindex="-1"></canvas>
     </div>
-    <div id="custom-overlay">
+    <div id="custom-overlay"> 
         <img id="back-image" src="TemplateData/LoadingScreen/Cover.png">
         <div id="unity-loading-bar">
             <img id="unity-progress-bar-empty" src="TemplateData/LoadingScreen/SLOT.png">
@@ -113,7 +111,28 @@
             <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_2.png">
             <img class="loading-text-sprite" src="TemplateData/LoadingScreen/LOADING_3.png">
         </div>
+        <!-- <div id="ton-connect"></div> -->
     </div>
+
+    <!-- <script>
+        const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+            manifestUrl: 'https://biztycoongame.xyz/tonconnect-manifest.json',
+            buttonRootId: 'ton-connect'
+        });
+    </script> -->
+
+    <!-- <script>
+        async function connectToWallet() {
+            const connectedWallet = await tonConnectUI.connectWallet();
+            // Do something with connectedWallet if needed
+            console.log(connectedWallet);
+        }
+
+        // Call the function
+        // connectToWallet().catch(error => {
+        //     console.error("Error connecting to wallet:", error);
+        // });
+    </script> -->
 
     <!-- Script part -->
     <script>
@@ -149,7 +168,7 @@
         // updateParagraph();
         // setInterval(updateParagraph, 10000);
 
-        // // Animating character
+        // Animating character
         // let charactedIndex = 0;
         // function updateCharacterSprites() {
         //     characterSprites.forEach((sprite) => (sprite.style.display = 'none'));
@@ -181,7 +200,7 @@
             }
 
             app.postAuthRequest = function (authData, callback) {
-                const url = "https://bussines-sim-t82d6.ondigitalocean.app/api/login";
+                const url = "https://plankton-app-vzfoe.ondigitalocean.app/api/login";
                 fetch(url, {
                     method: 'POST',
                     headers: {
@@ -218,50 +237,62 @@
 
         // Starting build
         var buildUrl = "Build";
-        var loaderUrl = buildUrl + "/429d365f85d952f10d6db4d8eea5ed65.loader.js";
+        var loaderUrl = buildUrl + "/ad3121349fc77dd86f8e3ff49019329b.loader.js";
         var config = {
-            dataUrl: buildUrl + "/220b6fbad3b647299500a051fc617fe4.data.br",
-            frameworkUrl: buildUrl + "/871d8f4d03d1acb77c6a8d2b3da2db01.framework.js.br",
-            codeUrl: buildUrl + "/4c38d1ab86eca6d8448a6bd6542e936f.wasm.br",
+            dataUrl: buildUrl + "/2d81ccbe8f37d8f48da88d596ae50f91.data.br",
+            frameworkUrl: buildUrl + "/6eade63a2a3b9143a2a73d38e3e35ef7.framework.js.br",
+            codeUrl: buildUrl + "/6a94ef6739eaba5a9bf29b5afe30521f.wasm.br",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "DefaultCompany",
             productName: "motchi",
             productVersion: "1.0",
         };
 
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            container.className = "unity-mobile";
-            canvas.className = "unity-mobile";
-        } else {
-            canvas.style.width = "100%";
-            canvas.style.height = "100%";
+        var userLang = navigator.language || navigator.userLanguage; 
+        var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        var isTelegram = (typeof window.Telegram !== 'undefined' && Telegram.WebApp);
+        
+        if (!isTelegram) { // for tests
+        //if (!isMobile || !isTelegram) { // for prod
+            if (userLang.toLowerCase().includes("ru")) {
+                alert("Пожалуйста, откройте игру в Telegram на телефоне");
+            } else {
+                alert("Please open the game in Telegram on your phone");
+            }
+            document.getElementById("unity-container").style.display = 'none';
         }
+        else
+        {
+            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                container.className = "unity-mobile";
+                canvas.className = "unity-mobile";
+            } else {
+                canvas.style.width = "100%";
+                canvas.style.height = "100%";
+            }
 
-        loadingBar.style.display = "block";
-        var myGameInstance = null;
-        var unityInstance = null;
-        var script = document.createElement("script");
-        script.src = loaderUrl;
-        script.onload = () => {
-            createUnityInstance(canvas, config, (progress) => {
-                progressBarFull.style.width = 100 * progress + "%";
-            }).then((instance) => {
-                myGameInstance = instance;
-                unityInstance = instance;
-                window.Telegram.WebApp.enableClosingConfirmation();
-            }).catch((message) => {
-                alert(message);
-            });
+            loadingBar.style.display = "block";
+            var myGameInstance = null;
+            var unityInstance = null;
+            var script = document.createElement("script");
+            script.src = loaderUrl;
+            script.onload = () => {
+                createUnityInstance(canvas, config, (progress) => {
+                    progressBarFull.style.width = 100 * progress + "%";
+                }).then((instance) => {
+                    myGameInstance = instance;
+                    unityInstance = instance;
+
+                    window.Telegram.WebApp.enableClosingConfirmation();
+                    // loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
+                    // clearInterval(loadTextInterval);
+                }).catch((message) => {
+                    alert(message);
+                });
+            }
+            document.body.appendChild(script);
         }
-        document.body.appendChild(script);
-    </script>
-    <script src="https://js.onclckvd.com/in-stream-ad-admanager/tma.js"></script>
-    <script>
-        window.initCdTma?.({ id: 6062830 })
-          .then(show => {
-            window.showOnclicka = show;
-          })
-          .catch(err => console.error('OnClicka init error:', err));
     </script>
 </body>
+
 </html>
