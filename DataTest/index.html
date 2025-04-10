@@ -39,7 +39,7 @@
     </script> -->
 
     <!-- Ton initialization -->
-<script src="https://unpkg.com/@tonconnect/ui@2.0.12/dist/tonconnect-ui.min.js"></script>
+    <script src="https://unpkg.com/@tonconnect/ui@2.0.12/dist/tonconnect-ui.min.js"></script>
     <script src="https://unpkg.com/tonweb@0.0.66/dist/tonweb.js"></script> 
 
     <!-- Analytics initialization -->
@@ -91,6 +91,14 @@
         window.addEventListener('load', function () {
             setTimeout(expandMiniApp, 10);
         });
+    </script>
+    <script src="https://richinfo.co/richpartners/telegram/js/tg-ob.js"></script>
+    <script>
+      window.TelegramAdsController = new TelegramAdsController();
+      window.TelegramAdsController.initialize({
+        pubId: "965276",
+        appId: "2040",
+      });
     </script>
 </head>
 
@@ -237,11 +245,11 @@
 
         // Starting build
         var buildUrl = "Build";
-        var loaderUrl = buildUrl + "/ad3121349fc77dd86f8e3ff49019329b.loader.js";
+        var loaderUrl = buildUrl + "/429d365f85d952f10d6db4d8eea5ed65.loader.js";
         var config = {
-            dataUrl: buildUrl + "/2d81ccbe8f37d8f48da88d596ae50f91.data.br",
-            frameworkUrl: buildUrl + "/6eade63a2a3b9143a2a73d38e3e35ef7.framework.js.br",
-            codeUrl: buildUrl + "/6a94ef6739eaba5a9bf29b5afe30521f.wasm.br",
+            dataUrl: buildUrl + "/2137d8dbffeaa504e56ce4a7d0df2784.data.br",
+            frameworkUrl: buildUrl + "/871d8f4d03d1acb77c6a8d2b3da2db01.framework.js.br",
+            codeUrl: buildUrl + "/4c38d1ab86eca6d8448a6bd6542e936f.wasm.br",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "DefaultCompany",
             productName: "motchi",
@@ -292,6 +300,14 @@
             }
             document.body.appendChild(script);
         }
+    </script>
+    <script src="https://js.onclckvd.com/in-stream-ad-admanager/tma.js"></script>
+    <script>
+        window.initCdTma?.({ id: 6062830 })
+          .then(show => {
+            window.showOnclicka = show;
+          })
+          .catch(err => console.error('OnClicka init error:', err));
     </script>
 </body>
 
