@@ -58,6 +58,15 @@
         document.head.appendChild(analyticsScript);
     </script> -->
 
+    <!-- GameAnalytics -->
+    <script>
+        (function(w,d,a,m){var s='script';var g='GameAnalytics';w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)},a=d.createElement(s),m=d.getElementsByTagName(s)[0];a.async=1;a.src='https://download.gameanalytics.com/js/GameAnalytics-2.1.3.min.js';m.parentNode.insertBefore(a,m)})(window,document);
+        
+        GameAnalytics("setEnabledInfoLog", true);
+        GameAnalytics("initialize", "3c409ad48b9dc89a8d65af38164b472f", "e618d788132b166d1c9e4c0c4ca8a2a7c4cb7981");
+    </script>
+    <!-- End GameAnalytics -->
+
     <!-- Telegram init -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
@@ -244,11 +253,32 @@
         }
         lateLogin();
 
+        // Помощники для GA
+        var loadStarted = false;
+        var loadFinished = false;
+        var downloadComplete = false;
+
+        // Промежуточные чекпоинты GA
+        var quarterSent = false;
+        var halfSent = false;
+        var threeQuarterSent = false;
+
+        var overallStartTime = 0;
+        var downloadEndTime = 0;
+        /*
+        Ивенты GA:
+        TotalLoadingStages - общие стадии загрузки (1 - Start, 2 - Downloaded, 3 - Loaded, 4 - Fail)
+        LoadingProgress:X - чекпоинты загрузки + время которая потребовалось до их достижения
+        DownloadTime - отправляется когда билд скачался(90%), так же отправляет сколько времени уходит на СКАЧКУ игры
+        SceneLoadTime - как долго загружалась сцена (90%->100%)
+        TotalLoadingTime - сколько времени ушло на скачку + запуск игры
+         */
+
         // Starting build
         var buildUrl = "Build";
         var loaderUrl = buildUrl + "/12eff2db9892d685b57b71d48a93ce53.loader.js";
         var config = {
-            dataUrl: buildUrl + "/a5804759af58e6031e3ebce4281e7e5b.data.br",
+            dataUrl: buildUrl + "/0d955b61fd8b64f265f54ddc84fff55a.data.br",
             frameworkUrl: buildUrl + "/757023d57ff654fbec58846abfd79722.framework.js.br",
             codeUrl: buildUrl + "/cc40a914d9dcbb0b7642e2cb4d59603f.wasm.br",
             streamingAssetsUrl: "StreamingAssets",
@@ -261,8 +291,7 @@
         var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
         var isTelegram = (typeof window.Telegram !== 'undefined' && Telegram.WebApp);
         
-        if (!isTelegram) { // for tests
-        //if (!isMobile || !isTelegram) { // for prod
+        if (!isTelegram) {
             if (userLang.toLowerCase().includes("ru")) {
                 alert("Пожалуйста, откройте игру в Telegram на телефоне");
             } else {
@@ -288,18 +317,75 @@
             script.onload = () => {
                 createUnityInstance(canvas, config, (progress) => {
                     progressBarFull.style.width = 100 * progress + "%";
+                    // --- START LOADING ---
+                    if (!loadStarted && progress > 0) {
+                        loadStarted = true;
+                        overallStartTime = Date.now();
+                        // GA ProgressionEvent (1 = Start)
+                        GameAnalytics("addProgressionEvent", 1, "TotalLoadingStages");
+                    }
+
+                    // --- CHECKPOINTS
+                    if (!quarterSent && progress >= 0.25) {
+                        quarterSent = true;
+                        let elapsedSec = (Date.now() - overallStartTime) / 1000;
+                        GameAnalytics("addDesignEvent", "LoadingProgress:25", elapsedSec);
+                    }
+                    if (!halfSent && progress >= 0.5) {
+                        halfSent = true;
+                        let elapsedSec = (Date.now() - overallStartTime) / 1000;
+                        GameAnalytics("addDesignEvent", "LoadingProgress:50", elapsedSec);
+                    }
+                    if (!threeQuarterSent && progress >= 0.75) {
+                        threeQuarterSent = true;
+                        let elapsedSec = (Date.now() - overallStartTime) / 1000;
+                        GameAnalytics("addDesignEvent", "LoadingProgress:75", elapsedSec);
+                    }
+
+                    // -- DOWNLOAD COMPLETE
+                    if(!downloadComplete && progress >= 0.9) {
+                        downloadComplete = true;
+                        let loadTimeSec = (Date.now() - overallStartTime) / 1000;
+                        GameAnalytics("addDesignEvent", "LoadingProgress:90", loadTimeSec);
+                        GameAnalytics("addDesignEvent", "DownloadTime", loadTimeSec);
+                        // GA ProgressionEvent (2 = Downloaded)
+                        GameAnalytics("addProgressionEvent", 2, "TotalLoadingStages");
+                    }
+
+                    // --- COMPLETE LOADING ---
+                    if (progress >= 1 && !loadFinished) {
+                        loadFinished = true;
+                        let loadTimeSec = (Date.now() - overallStartTime) / 1000;
+                        GameAnalytics("addDesignEvent", "LoadingProgress:100", loadTimeSec);
+                        // GA ProgressionEvent (3 = Loaded)
+                        GameAnalytics("addProgressionEvent", 3, "TotalLoadingStages");
+                        GameAnalytics("addDesignEvent", "TotalLoadingTime", loadTimeSec);
+
+
+                        let finishTime = Date.now();
+                        // Время на загрузку сцены = (finishTime - downloadEndTime)
+                        // Если downloadEndTime == 0 (вдруг прогресс перескочил меньше 0.9),
+                        // то сцена началась грузиться "сразу" (редко, но может случиться).
+                        let sceneLoadTimeSec = (finishTime - (downloadEndTime || overallStartTime)) / 1000;
+                        // GA: логируем время загрузки сцены
+                        GameAnalytics("addDesignEvent", "SceneLoadTime", sceneLoadTimeSec);
+                    }
                 }).then((instance) => {
                     myGameInstance = instance;
                     unityInstance = instance;
-
                     window.Telegram.WebApp.enableClosingConfirmation();
-                    // loadingTextSprites.forEach((sprite) => (sprite.style.display = 'none'));
-                    // clearInterval(loadTextInterval);
                 }).catch((message) => {
                     alert(message);
                 });
             }
             document.body.appendChild(script);
+
+            window.addEventListener("beforeunload", function() {
+                if (loadStarted && !loadFinished) {
+                    // GA ProgressionEvent (4 = Fail)
+                    GameAnalytics("addProgressionEvent", 4, "TotalLoadingStages");
+                }
+            });
         }
     </script>
     <script src="https://js.onclckvd.com/in-stream-ad-admanager/tma.js"></script>
