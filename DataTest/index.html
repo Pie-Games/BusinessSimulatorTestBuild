@@ -254,33 +254,37 @@
         lateLogin();
 
         // Помощники для GA
-        var loadStarted = false;
         var loadFinished = false;
         var downloadComplete = false;
 
         // Промежуточные чекпоинты GA
+        var zeroSent = false;
+        var tenSent = false;
         var quarterSent = false;
         var halfSent = false;
         var threeQuarterSent = false;
 
-        var overallStartTime = 0;
+        var overallStartTime = Date.now();
         var downloadEndTime = 0;
         /*
         Ивенты GA:
-        TotalLoadingStages - общие стадии загрузки (1 - Start, 2 - Downloaded, 3 - Loaded, 4 - Fail)
+        TotalLoadingStages - общие стадии загрузки (1 - Start, 2 - Complete, 3 - Fail)
         LoadingProgress:X - чекпоинты загрузки + время которая потребовалось до их достижения
         DownloadTime - отправляется когда билд скачался(90%), так же отправляет сколько времени уходит на СКАЧКУ игры
         SceneLoadTime - как долго загружалась сцена (90%->100%)
         TotalLoadingTime - сколько времени ушло на скачку + запуск игры
          */
 
+        // GA ProgressionEvent (1 = Start)
+        GameAnalytics("addProgressionEvent", 1, "TotalLoadingStages");
+
         // Starting build
         var buildUrl = "Build";
-        var loaderUrl = buildUrl + "/c348369c4a5e7915e5f74b5c3114fbc2.loader.js";
+        var loaderUrl = buildUrl + "/0478c2352264d2851081f6f901ba7000.loader.js";
         var config = {
-            dataUrl: buildUrl + "/ddfcdcce1b2df346cb2b385f45fe38fb.data.br",
-            frameworkUrl: buildUrl + "/757023d57ff654fbec58846abfd79722.framework.js.br",
-            codeUrl: buildUrl + "/5c9b42b79ab72a0068a57da87fdf12aa.wasm.br",
+            dataUrl: buildUrl + "/ec8d8e4ef71f150df51b9e282ecbbdad.data.br",
+            frameworkUrl: buildUrl + "/14f025134925851fa64c348fcdb48a51.framework.js.br",
+            codeUrl: buildUrl + "/8dce1a645debd5cf813774207cb93d65.wasm.br",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "DefaultCompany",
             productName: "motchi",
@@ -317,15 +321,18 @@
             script.onload = () => {
                 createUnityInstance(canvas, config, (progress) => {
                     progressBarFull.style.width = 100 * progress + "%";
-                    // --- START LOADING ---
-                    if (!loadStarted && progress > 0) {
-                        loadStarted = true;
-                        overallStartTime = Date.now();
-                        // GA ProgressionEvent (1 = Start)
-                        GameAnalytics("addProgressionEvent", 1, "TotalLoadingStages");
-                    }
-
                     // --- CHECKPOINTS
+                    if (!zeroSent && progress >= 0) {
+                        zeroSent = true;
+                        GameAnalytics("addDesignEvent", "LoadingProgress:0", 0.0);
+                    }
+                    
+                    if (!tenSent && progress >= 0.10) {
+                        tenSent = true;
+                        let elapsedSec = (Date.now() - overallStartTime) / 1000;
+                        GameAnalytics("addDesignEvent", "LoadingProgress:10", elapsedSec);
+                    }
+                    
                     if (!quarterSent && progress >= 0.25) {
                         quarterSent = true;
                         let elapsedSec = (Date.now() - overallStartTime) / 1000;
@@ -348,8 +355,6 @@
                         let loadTimeSec = (Date.now() - overallStartTime) / 1000;
                         GameAnalytics("addDesignEvent", "LoadingProgress:90", loadTimeSec);
                         GameAnalytics("addDesignEvent", "DownloadTime", loadTimeSec);
-                        // GA ProgressionEvent (2 = Downloaded)
-                        GameAnalytics("addProgressionEvent", 2, "TotalLoadingStages");
                     }
 
                     // --- COMPLETE LOADING ---
@@ -357,8 +362,8 @@
                         loadFinished = true;
                         let loadTimeSec = (Date.now() - overallStartTime) / 1000;
                         GameAnalytics("addDesignEvent", "LoadingProgress:100", loadTimeSec);
-                        // GA ProgressionEvent (3 = Loaded)
-                        GameAnalytics("addProgressionEvent", 3, "TotalLoadingStages");
+                        // GA ProgressionEvent (2 = Complete)
+                        GameAnalytics("addProgressionEvent", 2, "TotalLoadingStages");
                         GameAnalytics("addDesignEvent", "TotalLoadingTime", loadTimeSec);
 
 
@@ -379,13 +384,6 @@
                 });
             }
             document.body.appendChild(script);
-
-            window.addEventListener("beforeunload", function() {
-                if (loadStarted && !loadFinished) {
-                    // GA ProgressionEvent (4 = Fail)
-                    GameAnalytics("addProgressionEvent", 4, "TotalLoadingStages");
-                }
-            });
         }
     </script>
     <script src="https://js.onclckvd.com/in-stream-ad-admanager/tma.js"></script>
