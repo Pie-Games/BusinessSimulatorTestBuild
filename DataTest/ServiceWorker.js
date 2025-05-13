@@ -1,9 +1,9 @@
 const cacheName = "DefaultCompany-motchi-1.0";
 const contentToCache = [
-    "Build/302a92518b534ebfedd1dc20e533ec76.loader.js",
-    "Build/6e71a4a05de8e8f6fefae1e78ddad18e.framework.js.br",
-    "Build/b8440cdcdcc9e4460dd1606f71e4389f.data.br",
-    "Build/0d2becb4be8c76bc879bd41d332638b7.wasm.br",
+    "Build/57ed63e7bbce6a0883150141bc179b3f.loader.js",
+    "Build/832a7880fc3e5d81a60c8d1718c8ea3b.framework.js.br",
+    "Build/031f9f2ab73e5f3dea828b4f459bf54b.data.br",
+    "Build/81d8cd8a12e7b868fe0ee2145986a026.wasm.br",
     "TemplateData/style.css"
 
 ];
