@@ -56,7 +56,7 @@ window.addEventListener("load", function ()
   var loaderUrl = buildUrl + "/ca4c92845770a8d8b5673ea382351610.loader.js";
   var config = {
     dataUrl: buildUrl + "/8dd9a7e1d35e12bfe7d3643317f30dad.data.br",
-    frameworkUrl: buildUrl + "/9bf43c9821ac0a90d99a5962f18d40b2.framework.js.br",
+    frameworkUrl: buildUrl + "/f5c209f992461084786a0003fd214ee7.framework.js.br",
     codeUrl: buildUrl + "/e9e1d848d70e044b00551b3191eaa5d5.wasm.br",
     streamingAssetsUrl: "StreamingAssets",
     companyName: "DefaultCompany",
