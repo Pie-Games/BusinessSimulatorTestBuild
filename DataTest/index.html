@@ -120,10 +120,63 @@
         debug: false,
       });
     </script>
+    <style>
+    #rotate-overlay {
+        display: none;
+        position: fixed; top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.8);
+        color: white; font-size: 1.5em;
+        display: flex; align-items: center; justify-content: center;
+        z-index: 9999;
+    }
+    </style>
 </head>
 
 <!-- Loading screen body -->
 <body>
+    <div id="rotate-overlay"></div>
+    <script>
+    window.addEventListener('DOMContentLoaded', () => {
+        if (window.Telegram && Telegram.WebApp) {
+        Telegram.WebApp.ready();
+        }
+        initOrientationOverlay();
+    });
+
+    function initOrientationOverlay() {
+        const overlay = document.getElementById('rotate-overlay');
+        if (!overlay) return;
+
+        const lang = getUserLang();
+        const messages = {
+        en: 'Please rotate your device to portrait orientation',
+        ru: 'Пожалуйста, поверните устройство в вертикальное положение'
+        };
+        overlay.innerText = messages[lang] || messages.en;
+
+        window.addEventListener('orientationchange', checkOrientation);
+        window.addEventListener('resize', checkOrientation);
+        checkOrientation();
+    }
+
+    function getUserLang() {
+        if (window.Telegram && Telegram.WebApp && Telegram.WebApp.initDataUnsafe) {
+        const code = Telegram.WebApp.initDataUnsafe.user?.language_code;
+        if (code) return code;
+        }
+        const nav = navigator.language || navigator.userLanguage || 'en';
+        return nav.split('-')[0];
+    }
+
+    function checkOrientation() {
+        const overlay = document.getElementById('rotate-overlay');
+        const isLandscape = window.matchMedia("(orientation: landscape)").matches
+                            || Math.abs(window.orientation) === 90;
+        overlay.style.display = isLandscape ? 'flex' : 'none';
+    }
+    </script>
+
     <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas" tabindex="-1"></canvas>
     </div>
@@ -290,11 +343,11 @@
 
         // Starting build
         var buildUrl = "Build";
-        var loaderUrl = buildUrl + "/848b8e3f82646e6a790378f0346dbe38.loader.js";
+        var loaderUrl = buildUrl + "/70c1596dbbd0908b1cabf894348c81a3.loader.js";
         var config = {
-            dataUrl: buildUrl + "/af98bc995e7b4ffdf212f4e96de82742.data.br",
-            frameworkUrl: buildUrl + "/502691539ccb3520e8aa45ce12051f59.framework.js.br",
-            codeUrl: buildUrl + "/2988a7ee6d565f7e961599579a5361b7.wasm.br",
+            dataUrl: buildUrl + "/3de6e16d3c5881856cd980f09a018140.data.br",
+            frameworkUrl: buildUrl + "/28ef0869aa2c0ec25acfd4a375392c72.framework.js.br",
+            codeUrl: buildUrl + "/f6b954a22e1ff96c7a05aecd3ad3a906.wasm.br",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "DefaultCompany",
             productName: "motchi",
