@@ -44,6 +44,7 @@
   </assembly>
   <assembly fullname="AstarPathfindingProject, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="AstarPath" preserve="all" />
+    <type fullname="Pathfinding.DynamicGridObstacle" preserve="all" />
     <type fullname="Pathfinding.AstarColor" preserve="nothing" serialized="true" />
     <type fullname="Pathfinding.AstarData" preserve="nothing" serialized="true" />
     <type fullname="Pathfinding.EuclideanEmbedding" preserve="nothing" serialized="true" />
