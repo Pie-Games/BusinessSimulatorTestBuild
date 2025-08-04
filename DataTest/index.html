@@ -47,6 +47,13 @@
             loader: false,
         });
     </script> -->
+    <script src="https://sdk.taddy.pro/web/taddy.min.js"></script>
+    <script>
+        window.onload = () => {
+            Taddy.init('cf490dc52692b7d4e85a515f65357721');
+            Taddy.ready()
+        };
+    </script>
 
     <!-- Ton initialization -->
     <script src="https://unpkg.com/@tonconnect/ui@2.0.12/dist/tonconnect-ui.min.js"></script>
@@ -343,11 +350,11 @@
 
         // Starting build
         var buildUrl = "Build";
-        var loaderUrl = buildUrl + "/209600928a38f166117444172e4b5914.loader.js";
+        var loaderUrl = buildUrl + "/e17ce5815cca3bab754a0ff0e8593789.loader.js";
         var config = {
-            dataUrl: buildUrl + "/a54ab33a52c64a85552996486dd77f43.data.br",
-            frameworkUrl: buildUrl + "/e8c5ad8f089f215fe48de9243e928b05.framework.js.br",
-            codeUrl: buildUrl + "/e2298d5390c5732e4c40815c37f9def3.wasm.br",
+            dataUrl: buildUrl + "/8418ecd69142a924707273ed204d27e5.data.br",
+            frameworkUrl: buildUrl + "/77bf65ef92fb2859df8cd1fe7fec8b00.framework.js.br",
+            codeUrl: buildUrl + "/1454e2492c0338482e91f2a53bc886b5.wasm.br",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "DefaultCompany",
             productName: "motchi",
