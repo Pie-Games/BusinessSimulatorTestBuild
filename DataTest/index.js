@@ -53,11 +53,11 @@ window.addEventListener("load", function ()
   }
 
   var buildUrl = "Build";
-  var loaderUrl = buildUrl + "/a02256148340487e19882de33c0b180e.loader.js";
+  var loaderUrl = buildUrl + "/a1147759fe0f8e7639676ef51ed5988f.loader.js";
   var config = {
-    dataUrl: buildUrl + "/db23e7db81b9d2cce62a4cc68173e197.data.br",
-    frameworkUrl: buildUrl + "/c26f8b8f19af973a2b423e8bb8349909.framework.js.br",
-    codeUrl: buildUrl + "/78925d82f2c458f19fa25dfd795e699a.wasm.br",
+    dataUrl: buildUrl + "/7038ece56eda4559cf47c295f171b29d.data.br",
+    frameworkUrl: buildUrl + "/6c7b9546a1c4e36ea0c2ce72e476c74d.framework.js.br",
+    codeUrl: buildUrl + "/a0cbe9da75cc4e6d6df952b90009fb7f.wasm.br",
     streamingAssetsUrl: "StreamingAssets",
     companyName: "DefaultCompany",
     productName: "motchi",
