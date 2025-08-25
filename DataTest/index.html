@@ -11,6 +11,33 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes, maximum-scale=1, user-scalable=no">
 
+
+    <script>
+        (function () {
+        const buf = [];
+        const push = (lvl, msg) => buf.push({ t: Date.now(), lvl, msg: String(msg) });
+
+        const orig = { log: console.log, warn: console.warn, error: console.error };
+        console.log = (...a)=>{ push('log', a.join(' ')); orig.log.apply(console,a); };
+        console.warn = (...a)=>{ push('warn', a.join(' ')); orig.warn.apply(console,a); };
+        console.error = (...a)=>{ push('error', a.join(' ')); orig.error.apply(console,a); };
+
+        window.addEventListener('error', e=>{
+            push('js_error', `${e.message} @ ${e.filename}:${e.lineno}:${e.colno}\n${e.error?.stack||''}`);
+        });
+        window.addEventListener('unhandledrejection', e=>{
+            const r=e.reason; push('unhandled', (r && (r.stack||r.message||String(r))) || 'unhandledrejection');
+        });
+
+        window.__logbuf = buf;
+        window.__drainLogbuf = function (takeAll=true) {
+            const copy = buf.slice();
+            if (takeAll) buf.length = 0;
+            return copy;
+        };
+        })();
+    </script>
+
     <!-- Socket server init -->
     <!-- <script src="https://cdn.socket.io/4.0.0/socket.io.js"></script> -->
     <script src="TemplateData/WallgramShowcaseLib.js"></script>
@@ -54,14 +81,6 @@
             Taddy.init('cf490dc52692b7d4e85a515f65357721');
             Taddy.ready()
         };
-    </script>
-
-    <script src="https://w.tads.me/widget.js"></script>
-    <script type="text/javascript" src="https://cdn.tgads.space/assets/js/adexium-widget.min.js"></script>
-    <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', () => {
-            const adexiumWidget = new AdexiumWidget({wid: '2a0d8561-d3c1-42a1-9a83-623df509ce00', adFormat: 'interstitial'});
-        });
     </script>
 
     <!-- Ton initialization -->
@@ -151,7 +170,6 @@
 
 <!-- Loading screen body -->
 <body>
-    <div id="tads-container-680"></div>
     <div id="rotate-overlay"></div>
     <script>
     window.addEventListener('DOMContentLoaded', () => {
@@ -360,16 +378,19 @@
 
         // Starting build
         var buildUrl = "Build";
-        var loaderUrl = buildUrl + "/b7c5cbbbe9bb31d532b264b815955410.loader.js";
+        var loaderUrl = buildUrl + "/5ee436e69a5965e1aa80345539bec0da.loader.js";
         var config = {
-            dataUrl: buildUrl + "/30079f68871320f1a15fd26db2234ce8.data.br",
-            frameworkUrl: buildUrl + "/ae48c8ecda2b86cb99392e7b35362c15.framework.js.br",
-            codeUrl: buildUrl + "/fbb3915e76a0fe63f74a2728f59b8be6.wasm.br",
+            dataUrl: buildUrl + "/1fd04103276518bccb246ecb6c26d3fd.data.br",
+            frameworkUrl: buildUrl + "/9173a5fcbbca468a3a4f84623b098869.framework.js.br",
+            codeUrl: buildUrl + "/f210c06a11468214e8143cf142c492c6.wasm.br",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "DefaultCompany",
             productName: "motchi",
             productVersion: "1.0",
         };
+
+        config.print = (t) => { console.log("[U-PRINT]", t); };
+        config.printErr = (t) => { console.error("[U-ERROR]", t); };
 
         var userLang = navigator.language || navigator.userLanguage; 
         var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
