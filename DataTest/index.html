@@ -11,7 +11,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes, maximum-scale=1, user-scalable=no">
 
-
+    <!-- Logs -->
     <script>
         (function () {
         const buf = [];
@@ -81,6 +81,14 @@
             Taddy.init('cf490dc52692b7d4e85a515f65357721');
             Taddy.ready()
         };
+    </script>
+
+    <script src="https://w.tads.me/widget.js"></script>
+    <script type="text/javascript" src="https://cdn.tgads.space/assets/js/adexium-widget.min.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+            const adexiumWidget = new AdexiumWidget({wid: '2a0d8561-d3c1-42a1-9a83-623df509ce00', adFormat: 'interstitial'});
+        });
     </script>
 
     <!-- Ton initialization -->
@@ -165,13 +173,92 @@
         display: flex; align-items: center; justify-content: center;
         z-index: 9999;
     }
+    #log-dl-btn {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10000;
+
+        display: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+
+        background: #222;
+        color: #fff;
+        opacity: 0.95;
+        cursor: pointer;
+    }
+
+    #log-dl-btn:hover {
+        background: #333;
+    }
+
+    #log-dl-btn[disabled] {
+        opacity: 0.4;
+        pointer-events: none;
+    }
     </style>
 </head>
 
 <!-- Loading screen body -->
 <body>
+    <div id="tads-container-680"></div>
     <div id="rotate-overlay"></div>
     <script>
+    var logBtn = document.getElementById('log-dl-btn');
+    var stuckTimer = null;
+
+    function armStuckTimer(){
+    if (stuckTimer) clearTimeout(stuckTimer);
+    stuckTimer = setTimeout(()=>{
+        if (!loadFinished) {
+        logBtn.style.display = 'block';
+        logBtn.disabled = false;
+        }
+    }, 35000);
+    }
+
+    logBtn.addEventListener('click', triggerDownloadLogs);
+
+    function triggerDownloadLogs(){
+        try {
+            if (window.unityInstance) {
+            window.unityInstance.SendMessage('LogDownload', 'OnDownloadLogsClicked'); 
+            return;
+            }
+        } catch(e) { }
+        downloadJsOnlyLogsFallback();
+    }
+
+    function downloadJsOnlyLogsFallback(){
+        try {
+            const arr = (window.__drainLogbuf && window.__drainLogbuf(false)) || [];
+            let out = '# JS early logs (fallback only)\n';
+            for (const it of arr){
+            const d = new Date(it.t || Date.now()).toISOString();
+            out += `[${d}] [js_${it.lvl||'log'}] ${String(it.msg||'')}\n`;
+            }
+            saveTextFile(`logs_${new Date().toISOString().replace(/[:.]/g,'-')}.log`, out);
+        } catch(e){
+            alert('Не удалось собрать логи (fallback).');
+        }
+    }
+
+    function saveTextFile(name, text){
+        const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 0);
+    }
+    armStuckTimer();
+
     window.addEventListener('DOMContentLoaded', () => {
         if (window.Telegram && Telegram.WebApp) {
         Telegram.WebApp.ready();
@@ -229,6 +316,7 @@
         </div>
         <!-- <div id="ton-connect"></div> -->
     </div>
+    <button id="log-dl-btn" style="display:none;">Download logs</button>
     <div id="7ac05abb15313bb124459ba8bf63b69d87aa49e0"></div>
     <!-- <script>
         const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
@@ -378,11 +466,11 @@
 
         // Starting build
         var buildUrl = "Build";
-        var loaderUrl = buildUrl + "/d37419d7f8661449b017255acb8edbfd.loader.js";
+        var loaderUrl = buildUrl + "/9a169ba5b1416b02b4857a60696dc3aa.loader.js";
         var config = {
-            dataUrl: buildUrl + "/77e7030e2e7a6e40e985632788298e53.data.br",
-            frameworkUrl: buildUrl + "/57cf7580086c79cd6f887df411287e10.framework.js.br",
-            codeUrl: buildUrl + "/119651a2718c99808a875e2b3c11e240.wasm.br",
+            dataUrl: buildUrl + "/65db4acd0c5cacdc9e8aead597abfda6.data.br",
+            frameworkUrl: buildUrl + "/c9c6aaaee6a003e5ef442265945b00b9.framework.js.br",
+            codeUrl: buildUrl + "/35186898f50bdf5b40adb1e241cd5c5c.wasm.br",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "DefaultCompany",
             productName: "motchi",
@@ -475,11 +563,19 @@
                         let sceneLoadTimeSec = (finishTime - (downloadEndTime || overallStartTime)) / 1000;
                         // GA: логируем время загрузки сцены
                         GameAnalytics("addDesignEvent", "SceneLoadTime", sceneLoadTimeSec);
+
+                        if (stuckTimer) clearTimeout(stuckTimer);
+                        logBtn.disabled = true;
+                        logBtn.style.display = 'none';
                     }
                 }).then((instance) => {
                     myGameInstance = instance;
                     unityInstance = instance;
                     window.Telegram.WebApp.enableClosingConfirmation();
+
+                    if (stuckTimer) clearTimeout(stuckTimer);
+                    logBtn.disabled = true;
+                    logBtn.style.display = 'none';
                 }).catch((message) => {
                     alert(message);
                 });
