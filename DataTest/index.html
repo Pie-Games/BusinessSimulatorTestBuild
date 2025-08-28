@@ -86,55 +86,19 @@
     <script src="https://w.tads.me/widget.js"></script>
     <script type="text/javascript" src="https://cdn.tgads.space/assets/js/tg-ads-co-widget.min.js"></script>
     <script type="text/javascript">
-        // Ad Provider Widget IDs Configuration - TEST ENVIRONMENT
-        window.TADS_WIDGET_ID = '692'; // Test Tads Widget ID
-        window.ADEXIUM_WIDGET_ID = '2a0d8561-d3c1-42a1-9a83-623df509ce00'; // Test Adexium Widget ID
-        
-        console.log('[Adexium Init] Starting initialization...');
-        console.log('[Adexium Init] Widget ID:', window.ADEXIUM_WIDGET_ID);
+        window.TADS_WIDGET_ID = '680';
+        window.ADEXIUM_WIDGET_ID = '2a0d8561-d3c1-42a1-9a83-623df509ce00';
         
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('[Adexium Init] DOM loaded, checking AdexiumWidget availability...');
-            
             if (window.AdexiumWidget) {
-                console.log('[Adexium Init] AdexiumWidget class is available');
                 try {
                     const adexiumWidget = new AdexiumWidget({wid: window.ADEXIUM_WIDGET_ID, adFormat: 'interstitial', debug: true});
-                    console.log('[Adexium Init] AdexiumWidget instance created successfully', adexiumWidget);
                     window.__adexiumPreInit = adexiumWidget;
                 } catch (e) {
                     console.error('[Adexium Init] Failed to create AdexiumWidget instance:', e);
                 }
-            } else {
-                console.error('[Adexium Init] AdexiumWidget class not found');
             }
         });
-        
-        // Add load event listener for additional debugging
-        window.addEventListener('load', () => {
-            console.log('[Adexium Init] Window loaded, final AdexiumWidget check...');
-            console.log('[Adexium Init] AdexiumWidget available:', !!window.AdexiumWidget);
-        });
-        
-        // Debug helper function - you can call this from browser console
-        window.debugAdexium = function() {
-            console.log('=== ADEXIUM DEBUG INFO ===');
-            console.log('AdexiumWidget class available:', !!window.AdexiumWidget);
-            console.log('ADEXIUM_WIDGET_ID:', window.ADEXIUM_WIDGET_ID);
-            console.log('Pre-initialized widget:', window.__adexiumPreInit);
-            console.log('Cached widget:', window.__adexiumAds);
-            
-            if (window.AdexiumWidget) {
-                try {
-                    console.log('Attempting to create test widget...');
-                    const testWidget = new AdexiumWidget({wid: window.ADEXIUM_WIDGET_ID, adFormat: 'interstitial', debug: true});
-                    console.log('Test widget created successfully:', testWidget);
-                } catch (e) {
-                    console.error('Failed to create test widget:', e);
-                }
-            }
-            console.log('========================');
-        };
     </script>
 
     <!-- Ton initialization -->
@@ -514,8 +478,8 @@
         var buildUrl = "Build";
         var loaderUrl = buildUrl + "/ee2f545752400b3f3cdf7c52c0c70360.loader.js";
         var config = {
-            dataUrl: buildUrl + "/42ce1d03b19519cb53c38e9685ae8bdc.data.br",
-            frameworkUrl: buildUrl + "/3b2400e78fef3f7fc6988081624749e2.framework.js.br",
+            dataUrl: buildUrl + "/68c00ff423981eb510763f2a447503a3.data.br",
+            frameworkUrl: buildUrl + "/0c859a9a72d6f223bcdcb072cb129694.framework.js.br",
             codeUrl: buildUrl + "/4cbb925197e5ce669549ce5d5df3c86f.wasm.br",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "DefaultCompany",
